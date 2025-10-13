@@ -10,6 +10,7 @@ The `vaqt` package offers data types and structures for handling time and durati
 [Time arithmetic](#time-arithmetic) •
 [Rounding](#rounding) •
 [Formatting](#formatting) •
+[Marshaling](#marshaling) •
 [Duration](#duration) •
 [Duration rounding](#duration-rounding) •
 [Getting started](#getting-started) •

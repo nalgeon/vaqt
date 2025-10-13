@@ -5,7 +5,7 @@ TEST_FLAGS := $(CFLAGS) -Wall -Werror -Wsign-compare -Wno-unknown-pragmas -Isrc
 .PHONY: test
 
 example:
-	@$(CC) $(CFLAGS) -Isrc example.c src/*.c -o example -lm
+	@$(CC) $(CFLAGS) -Isrc test/example.c src/*.c -o example -lm
 	@./example
 	@rm -f example
 
