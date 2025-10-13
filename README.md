@@ -687,7 +687,7 @@ Functions for converting time values to and from binary data.
 ### time_marshal_binary
 
 ```c
-size_t time_marshal_binary(uint8_t* buf, size_t size, Time t);
+void time_marshal_binary(Time t, uint8_t* buf);
 ```
 
 Marshals the time value into a binary blob.
@@ -702,7 +702,7 @@ time_marshal_binary(t, buf);
 ### time_unmarshal_binary
 
 ```c
-Time time_unmarshal_binary(const uint8_t* buf, size_t size);
+Time time_unmarshal_binary(const uint8_t* buf);
 ```
 
 Unmarshals a time value from a binary blob.
