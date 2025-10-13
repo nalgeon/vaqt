@@ -1,6 +1,6 @@
 # vaqt: High-precision date/time in C
 
-The `vaqt` package offers data types and structures for handling time and duration in C, with nanosecond precision.
+The `vaqt` package offers data types and functions for handling time and duration in C, with nanosecond precision.
 
 [Concepts](#concepts) •
 [Creating values](#creating-time-values) •
