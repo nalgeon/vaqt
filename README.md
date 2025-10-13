@@ -6,6 +6,7 @@ The `vaqt` package offers data types and structures for handling time and durati
 [Creating values](#creating-time-values) •
 [Extracting fields](#extracting-time-fields) •
 [Unix time](#unix-time) •
+[Calendar time](#calendar-time) •
 [Time comparison](#time-comparison) •
 [Time arithmetic](#time-arithmetic) •
 [Rounding](#rounding) •
@@ -404,6 +405,48 @@ Returns t as a Unix time, the number of nanoseconds elapsed since January 1, 197
 Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
 int64_t unix_nsec = time_to_nano(t);
 // 1722979335431295000
+```
+
+## Calendar time
+
+Functions for converting time values to/from calendar time.
+
+### time_tm
+
+```c
+Time time_tm(struct tm tm, int offset_sec);
+```
+
+Returns the Time corresponding to the given calendar time at the given timezone offset.
+
+```c
+struct tm tm = {
+    .tm_year = 111,  // 2011 - 1900
+    .tm_mon = 10,    // November (0-based)
+    .tm_mday = 18,
+    .tm_hour = 15,
+    .tm_min = 56,
+    .tm_sec = 35,
+};
+Time t = time_tm(tm, 0);
+char buf[64];
+time_fmt_iso(buf, sizeof(buf), t, 0);
+// "2011-11-18T15:56:35Z"
+```
+
+### time_to_tm
+
+```c
+struct tm time_to_tm(Time t, int offset_sec);
+```
+
+Returns t in the given timezone offset as a calendar time.
+
+```c
+Time t = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+struct tm tm = time_to_tm(t, 0);
+// tm.tm_year = 111, tm.tm_mon = 10, tm.tm_mday = 18,
+// tm.tm_hour = 15, tm.tm_min = 56, tm.tm_sec = 35
 ```
 
 ## Time comparison

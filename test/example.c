@@ -238,6 +238,35 @@ static void example_time_to_nano(void) {
     // 1722979335431295000
 }
 
+static void example_time_tm(void) {
+    printf("---\ntime_tm:\n");
+
+    struct tm tm = {
+        .tm_year = 111,  // 2011 - 1900
+        .tm_mon = 10,    // November (0-based)
+        .tm_mday = 18,
+        .tm_hour = 15,
+        .tm_min = 56,
+        .tm_sec = 35,
+    };
+    Time t = time_tm(tm, 0);
+    char buf[64];
+    time_fmt_iso(buf, sizeof(buf), t, 0);
+    printf("%s\n", buf);
+    // "2011-11-18T15:56:35Z"
+}
+
+static void example_time_to_tm(void) {
+    printf("---\ntime_to_tm:\n");
+
+    Time t = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+    struct tm tm = time_to_tm(t, 0);
+    printf("tm_year = %d, tm_mon = %d, tm_mday = %d, tm_hour = %d, tm_min = %d, tm_sec = %d\n",
+           tm.tm_year, tm.tm_mon, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+    // tm.tm_year = 111, tm.tm_mon = 10, tm.tm_mday = 18,
+    // tm.tm_hour = 15, tm.tm_min = 56, tm.tm_sec = 35
+}
+
 static void example_time_after(void) {
     printf("---\ntime_after:\n");
 
@@ -531,6 +560,8 @@ int main(void) {
     example_time_to_milli();
     example_time_to_micro();
     example_time_to_nano();
+    example_time_tm();
+    example_time_to_tm();
     example_time_after();
     example_time_before();
     example_time_compare();
