@@ -11,7 +11,7 @@ static void example_time_now(void) {
 
     Time t = time_now();
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), t, 0);
+    time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // 2025-10-13T19:46:07.726485000Z
 }
@@ -21,31 +21,31 @@ static void example_time_date(void) {
 
     Time t1 = time_date(2011, TIME_NOVEMBER, 18, 0, 0, 0, 0, 0);
     char buf1[64];
-    time_fmt_iso(buf1, sizeof(buf1), t1, 0);
+    time_fmt_iso(t1, 0, buf1, sizeof(buf1));
     printf("%s\n", buf1);
     // 2011-11-18T00:00:00Z
 
     Time t2 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
     char buf2[64];
-    time_fmt_iso(buf2, sizeof(buf2), t2, 0);
+    time_fmt_iso(t2, 0, buf2, sizeof(buf2));
     printf("%s\n", buf2);
     // 2011-11-18T15:56:35Z
 
     Time t3 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, 0);
     char buf3[64];
-    time_fmt_iso(buf3, sizeof(buf3), t3, 0);
+    time_fmt_iso(t3, 0, buf3, sizeof(buf3));
     printf("%s\n", buf3);
     // 2011-11-18T15:56:35.666777888Z
 
     Time t4 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, -5 * 3600);
     char buf4[64];
-    time_fmt_iso(buf4, sizeof(buf4), t4, 0);
+    time_fmt_iso(t4, 0, buf4, sizeof(buf4));
     printf("%s\n", buf4);
     // 2011-11-18T20:56:35Z
 
     Time t5 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, -5 * 3600);
     char buf5[64];
-    time_fmt_iso(buf5, sizeof(buf5), t5, 0);
+    time_fmt_iso(t5, 0, buf5, sizeof(buf5));
     printf("%s\n", buf5);
     // 2011-11-18T20:56:35.666777888Z
 }
@@ -167,7 +167,7 @@ static void example_time_unix(void) {
 
     Time t = time_unix(1321631795, 666777888);
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), t, 0);
+    time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2011-11-18T15:56:35.666777888Z"
 }
@@ -177,7 +177,7 @@ static void example_time_milli(void) {
 
     Time t = time_milli(1321631795666);
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), t, 0);
+    time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2011-11-18T15:56:35.666000000Z"
 }
@@ -187,7 +187,7 @@ static void example_time_micro(void) {
 
     Time t = time_micro(1321631795666777);
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), t, 0);
+    time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2011-11-18T15:56:35.666777000Z"
 }
@@ -197,7 +197,7 @@ static void example_time_nano(void) {
 
     Time t = time_nano(1321631795666777888);
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), t, 0);
+    time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2011-11-18T15:56:35.666777888Z"
 }
@@ -251,7 +251,7 @@ static void example_time_tm(void) {
     };
     Time t = time_tm(tm, 0);
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), t, 0);
+    time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2011-11-18T15:56:35Z"
 }
@@ -323,7 +323,7 @@ static void example_time_add(void) {
     Duration d = 30 * TIME_SECOND;
     Time result = time_add(t, d);
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), result, 0);
+    time_fmt_iso(result, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2024-08-06T21:22:45Z"
 }
@@ -362,7 +362,7 @@ static void example_time_add_date(void) {
     Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
     Time result = time_add_date(t, 0, 0, 1);
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), result, 0);
+    time_fmt_iso(result, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2024-08-07T21:22:15Z"
 }
@@ -374,7 +374,7 @@ static void example_time_truncate(void) {
     Duration d = 10 * TIME_SECOND;
     Time result = time_truncate(t, d);
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), result, 0);
+    time_fmt_iso(result, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2024-08-06T21:22:10Z"
 }
@@ -386,7 +386,7 @@ static void example_time_round(void) {
     Duration d = 10 * TIME_SECOND;
     Time result = time_round(t, d);
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), result, 0);
+    time_fmt_iso(result, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2024-08-06T21:22:20Z"
 }
@@ -396,7 +396,7 @@ static void example_time_fmt_iso(void) {
 
     Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, 0);
     char buf[64];
-    size_t n = time_fmt_iso(buf, sizeof(buf), t, 0);
+    size_t n = time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2011-11-18T15:56:35.666777888Z"
 }
@@ -436,7 +436,7 @@ static void example_time_parse(void) {
 
     Time t = time_parse("2011-11-18T15:56:35.666777888Z");
     char buf[64];
-    time_fmt_iso(buf, sizeof(buf), t, 0);
+    time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2011-11-18T15:56:35.666777888Z"
 }

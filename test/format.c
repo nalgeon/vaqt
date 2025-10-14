@@ -36,7 +36,7 @@ static void test_fmt_iso(void) {
         Time t =
             time_date(test.year, test.month, test.day, test.hour, test.min, test.sec, test.nsec, 0);
         char got[64];
-        time_fmt_iso(got, sizeof(got), t, test.offset_sec);
+        time_fmt_iso(t, test.offset_sec, got, sizeof(got));
         // printf("want: %s, got: %s\n", test.want, got);
         assert(strcmp(got, test.want) == 0);
     }
@@ -61,7 +61,7 @@ static void test_fmt_datetime(void) {
         Time t =
             time_date(test.year, test.month, test.day, test.hour, test.min, test.sec, test.nsec, 0);
         char got[64];
-        time_fmt_datetime(got, sizeof(got), t, test.offset_sec);
+        time_fmt_datetime(t, test.offset_sec, got, sizeof(got));
         // printf("want: %s, got: %s\n", test.want, got);
         assert(strcmp(got, test.want) == 0);
     }
@@ -83,7 +83,7 @@ static void test_fmt_date(void) {
         Time t =
             time_date(test.year, test.month, test.day, test.hour, test.min, test.sec, test.nsec, 0);
         char got[64];
-        time_fmt_date(got, sizeof(got), t, test.offset_sec);
+        time_fmt_date(t, test.offset_sec, got, sizeof(got));
         // printf("want: %s, got: %s\n", test.want, got);
         assert(strcmp(got, test.want) == 0);
     }
@@ -105,7 +105,7 @@ static void test_fmt_time(void) {
         Time t =
             time_date(test.year, test.month, test.day, test.hour, test.min, test.sec, test.nsec, 0);
         char got[64];
-        time_fmt_time(got, sizeof(got), t, test.offset_sec);
+        time_fmt_time(t, test.offset_sec, got, sizeof(got));
         // printf("want: %s, got: %s\n", test.want, got);
         assert(strcmp(got, test.want) == 0);
     }

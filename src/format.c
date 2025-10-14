@@ -52,7 +52,7 @@ static bool parse_timezone_offset(const char* tz, int* offset_sec) {
 //  - 2006-01-02T15:04:05.999999999Z
 //  - 2006-01-02T15:04:05+07:00
 //  - 2006-01-02T15:04:05Z
-size_t time_fmt_iso(char* buf, size_t size, Time t, int offset_sec) {
+size_t time_fmt_iso(Time t, int offset_sec, char* buf, size_t size) {
     int year, day, hour, min, sec;
     enum Month month;
     const char* layout;
@@ -92,7 +92,7 @@ size_t time_fmt_iso(char* buf, size_t size, Time t, int offset_sec) {
 // time_fmt_datetime returns a datetime string
 // (2006-01-02 15:04:05) for the given time value.
 // Converts the time value to the given timezone offset before formatting.
-size_t time_fmt_datetime(char* buf, size_t size, Time t, int offset_sec) {
+size_t time_fmt_datetime(Time t, int offset_sec, char* buf, size_t size) {
     int year, day, hour, min, sec;
     enum Month month;
     if (offset_sec == 0) {
@@ -109,7 +109,7 @@ size_t time_fmt_datetime(char* buf, size_t size, Time t, int offset_sec) {
 // time_fmt_date returns a date string
 // (2006-01-02) for the given time value.
 // Converts the time value to the given timezone offset before formatting.
-size_t time_fmt_date(char* buf, size_t size, Time t, int offset_sec) {
+size_t time_fmt_date(Time t, int offset_sec, char* buf, size_t size) {
     int year, day;
     enum Month month;
     if (offset_sec == 0) {
@@ -124,7 +124,7 @@ size_t time_fmt_date(char* buf, size_t size, Time t, int offset_sec) {
 // time_fmt_time returns a time string
 // (15:04:05) for the given time value.
 // Converts the time value to the given timezone offset before formatting.
-size_t time_fmt_time(char* buf, size_t size, Time t, int offset_sec) {
+size_t time_fmt_time(Time t, int offset_sec, char* buf, size_t size) {
     int hour, min, sec;
     if (offset_sec == 0) {
         time_get_clock(t, &hour, &min, &sec);

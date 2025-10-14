@@ -97,7 +97,7 @@ Returns the current time in UTC.
 ```c
 Time t = time_now();
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), t, 0);
+time_fmt_iso(t, 0, buf, sizeof(buf));
 // 2025-10-13T19:46:07.726485000Z
 ```
 
@@ -116,27 +116,27 @@ If `offset_sec` is not 0, the source time is treated as being in a given timezon
 ```c
 Time t1 = time_date(2011, TIME_NOVEMBER, 18, 0, 0, 0, 0, 0);
 char buf1[64];
-time_fmt_iso(buf1, sizeof(buf1), t1, 0);
+time_fmt_iso(t1, 0, buf1, sizeof(buf1));
 // 2011-11-18T00:00:00Z
 
 Time t2 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
 char buf2[64];
-time_fmt_iso(buf2, sizeof(buf2), t2, 0);
+time_fmt_iso(t2, 0, buf2, sizeof(buf2));
 // 2011-11-18T15:56:35Z
 
 Time t3 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, 0);
 char buf3[64];
-time_fmt_iso(buf3, sizeof(buf3), t3, 0);
+time_fmt_iso(t3, 0, buf3, sizeof(buf3));
 // 2011-11-18T15:56:35.666777888Z
 
 Time t4 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, -5 * 3600);
 char buf4[64];
-time_fmt_iso(buf4, sizeof(buf4), t4, 0);
+time_fmt_iso(t4, 0, buf4, sizeof(buf4));
 // 2011-11-18T20:56:35Z
 
 Time t5 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, -5 * 3600);
 char buf5[64];
-time_fmt_iso(buf5, sizeof(buf5), t5, 0);
+time_fmt_iso(t5, 0, buf5, sizeof(buf5));
 // 2011-11-18T20:56:35.666777888Z
 ```
 
@@ -331,7 +331,7 @@ Returns the Time corresponding to the given Unix time, `sec` seconds and `nsec` 
 ```c
 Time t = time_unix(1321631795, 666777888);
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), t, 0);
+time_fmt_iso(t, 0, buf, sizeof(buf));
 // "2011-11-18T15:56:35.666777888Z"
 ```
 
@@ -346,7 +346,7 @@ Returns the Time corresponding to the given Unix time, `msec` milliseconds since
 ```c
 Time t = time_milli(1321631795666);
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), t, 0);
+time_fmt_iso(t, 0, buf, sizeof(buf));
 // "2011-11-18T15:56:35.666000000Z"
 ```
 
@@ -361,7 +361,7 @@ Returns the Time corresponding to the given Unix time, `usec` microseconds since
 ```c
 Time t = time_micro(1321631795666777);
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), t, 0);
+time_fmt_iso(t, 0, buf, sizeof(buf));
 // "2011-11-18T15:56:35.666777000Z"
 ```
 
@@ -376,7 +376,7 @@ Returns the Time corresponding to the given Unix time, `nsec` nanoseconds since 
 ```c
 Time t = time_nano(1321631795666777888);
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), t, 0);
+time_fmt_iso(t, 0, buf, sizeof(buf));
 // "2011-11-18T15:56:35.666777888Z"
 ```
 
@@ -463,7 +463,7 @@ struct tm tm = {
 };
 Time t = time_tm(tm, 0);
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), t, 0);
+time_fmt_iso(t, 0, buf, sizeof(buf));
 // "2011-11-18T15:56:35Z"
 ```
 
@@ -577,7 +577,7 @@ Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
 Duration d = 30 * TIME_SECOND;
 Time result = time_add(t, d);
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), result, 0);
+time_fmt_iso(result, 0, buf, sizeof(buf));
 // "2024-08-06T21:22:45Z"
 ```
 
@@ -636,7 +636,7 @@ Returns the time corresponding to adding the given number of years, months, and 
 Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
 Time result = time_add_date(t, 0, 0, 1);
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), result, 0);
+time_fmt_iso(result, 0, buf, sizeof(buf));
 // "2024-08-07T21:22:15Z"
 ```
 
@@ -657,7 +657,7 @@ Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 500000000, 0);
 Duration d = 10 * TIME_SECOND;
 Time result = time_truncate(t, d);
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), result, 0);
+time_fmt_iso(result, 0, buf, sizeof(buf));
 // "2024-08-06T21:22:10Z"
 ```
 
@@ -674,7 +674,7 @@ Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 500000000, 0);
 Duration d = 10 * TIME_SECOND;
 Time result = time_round(t, d);
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), result, 0);
+time_fmt_iso(result, 0, buf, sizeof(buf));
 // "2024-08-06T21:22:20Z"
 ```
 
@@ -685,7 +685,7 @@ Functions for formatting and parsing time values.
 ### time_fmt_iso
 
 ```c
-size_t time_fmt_iso(char* buf, size_t size, Time t, int offset_sec);
+size_t time_fmt_iso(Time t, int offset_sec, char* buf, size_t size);
 ```
 
 Returns an ISO 8601 time string for the given time value. Converts the time value to the given timezone offset before formatting.
@@ -702,14 +702,14 @@ Chooses the most compact representation:
 ```c
 Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, 0);
 char buf[64];
-size_t n = time_fmt_iso(buf, sizeof(buf), t, 0);
+size_t n = time_fmt_iso(t, 0, buf, sizeof(buf));
 // buf = "2011-11-18T15:56:35.666777888Z"
 ```
 
 ### time_fmt_datetime
 
 ```c
-size_t time_fmt_datetime(char* buf, size_t size, Time t, int offset_sec);
+size_t time_fmt_datetime(Time t, int offset_sec, char* buf, size_t size);
 ```
 
 Returns a datetime string (2006-01-02 15:04:05) for the given time value. Converts the time value to the given timezone offset before formatting.
@@ -717,14 +717,14 @@ Returns a datetime string (2006-01-02 15:04:05) for the given time value. Conver
 ```c
 Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
 char buf[64];
-size_t n = time_fmt_datetime(buf, sizeof(buf), t, 0);
+size_t n = time_fmt_datetime(t, 0, buf, sizeof(buf));
 // buf = "2011-11-18 15:56:35"
 ```
 
 ### time_fmt_date
 
 ```c
-size_t time_fmt_date(char* buf, size_t size, Time t, int offset_sec);
+size_t time_fmt_date(Time t, int offset_sec, char* buf, size_t size);
 ```
 
 Returns a date string (2006-01-02) for the given time value. Converts the time value to the given timezone offset before formatting.
@@ -732,14 +732,14 @@ Returns a date string (2006-01-02) for the given time value. Converts the time v
 ```c
 Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
 char buf[64];
-size_t n = time_fmt_date(buf, sizeof(buf), t, 0);
+size_t n = time_fmt_date(t, 0, buf, sizeof(buf));
 // buf = "2011-11-18"
 ```
 
 ### time_fmt_time
 
 ```c
-size_t time_fmt_time(char* buf, size_t size, Time t, int offset_sec);
+size_t time_fmt_time(Time t, int offset_sec, char* buf, size_t size);
 ```
 
 Returns a time string (15:04:05) for the given time value. Converts the time value to the given timezone offset before formatting.
@@ -747,7 +747,7 @@ Returns a time string (15:04:05) for the given time value. Converts the time val
 ```c
 Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
 char buf[64];
-size_t n = time_fmt_time(buf, sizeof(buf), t, 0);
+size_t n = time_fmt_time(t, 0, buf, sizeof(buf));
 // buf = "15:56:35"
 ```
 
@@ -772,7 +772,7 @@ Supports a limited set of layouts:
 ```c
 Time t = time_parse("2011-11-18T15:56:35.666777888Z");
 char buf[64];
-time_fmt_iso(buf, sizeof(buf), t, 0);
+time_fmt_iso(t, 0, buf, sizeof(buf));
 // buf = "2011-11-18T15:56:35.666777888Z"
 ```
 

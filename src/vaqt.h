@@ -205,16 +205,16 @@ Time time_round(Time t, Duration d);
 // ### Time formatting
 
 // time_fmt_iso returns an ISO 8601 time string for the given time value.
-size_t time_fmt_iso(char* buf, size_t size, Time t, int offset_sec);
+size_t time_fmt_iso(Time t, int offset_sec, char* buf, size_t size);
 
 // time_fmt_datetime returns a datetime string for the given time value.
-size_t time_fmt_datetime(char* buf, size_t size, Time t, int offset_sec);
+size_t time_fmt_datetime(Time t, int offset_sec, char* buf, size_t size);
 
 // time_fmt_date returns a date string for the given time value.
-size_t time_fmt_date(char* buf, size_t size, Time t, int offset_sec);
+size_t time_fmt_date(Time t, int offset_sec, char* buf, size_t size);
 
 // time_fmt_time returns a time string for the given time value.
-size_t time_fmt_time(char* buf, size_t size, Time t, int offset_sec);
+size_t time_fmt_time(Time t, int offset_sec, char* buf, size_t size);
 
 // time_parse parses a formatted string and returns the time value it represents.
 Time time_parse(const char* value);
