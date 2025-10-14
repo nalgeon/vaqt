@@ -53,18 +53,18 @@ static DateTest date_tests[] = {
     {2012, 12, 24, 8, 0, 0, 0, 0, 1356336000},   // Leap year
 
     // Many names for 2011-11-18 15:56:35.0 UTC
-    {2011, 11, 18, 15, 56, 35, 0, 0, 1321631795},             // Nov 18 15:56:35
-    {2011, 11, 19, -9, 56, 35, 0, 0, 1321631795},             // Nov 19 -9:56:35
-    {2011, 11, 17, 39, 56, 35, 0, 0, 1321631795},             // Nov 17 39:56:35
-    {2011, 11, 18, 14, 116, 35, 0, 0, 1321631795},            // Nov 18 14:116:35
-    {2011, 10, 49, 15, 56, 35, 0, 0, 1321631795},             // Oct 49 15:56:35
-    {2011, 11, 18, 15, 55, 95, 0, 0, 1321631795},             // Nov 18 15:55:95
-    {2011, 11, 18, 15, 56, 34, 1e9, 0, 1321631795},           // Nov 18 15:56:34 + 10⁹ns
-    {2011, 12, -12, 15, 56, 35, 0, 0, 1321631795},            // Dec -12 15:56:35
-    {2012, 1, -43, 15, 56, 35, 0, 0, 1321631795},             // 2012 Jan -43 15:56:35
-    {2012, January - 2, 18, 15, 56, 35, 0, 0, 1321631795},    // 2012 (Jan-2) 18 15:56:35
-    {2010, December + 11, 18, 15, 56, 35, 0, 0, 1321631795},  // 2010 (Dec+11) 18 15:56:35
-    {1970, 1, 15297, 15, 56, 35, 0, 0, 1321631795},           // large number of days
+    {2011, 11, 18, 15, 56, 35, 0, 0, 1321631795},                  // Nov 18 15:56:35
+    {2011, 11, 19, -9, 56, 35, 0, 0, 1321631795},                  // Nov 19 -9:56:35
+    {2011, 11, 17, 39, 56, 35, 0, 0, 1321631795},                  // Nov 17 39:56:35
+    {2011, 11, 18, 14, 116, 35, 0, 0, 1321631795},                 // Nov 18 14:116:35
+    {2011, 10, 49, 15, 56, 35, 0, 0, 1321631795},                  // Oct 49 15:56:35
+    {2011, 11, 18, 15, 55, 95, 0, 0, 1321631795},                  // Nov 18 15:55:95
+    {2011, 11, 18, 15, 56, 34, 1e9, 0, 1321631795},                // Nov 18 15:56:34 + 10⁹ns
+    {2011, 12, -12, 15, 56, 35, 0, 0, 1321631795},                 // Dec -12 15:56:35
+    {2012, 1, -43, 15, 56, 35, 0, 0, 1321631795},                  // 2012 Jan -43 15:56:35
+    {2012, TIME_JANUARY - 2, 18, 15, 56, 35, 0, 0, 1321631795},    // 2012 (Jan-2) 18 15:56:35
+    {2010, TIME_DECEMBER + 11, 18, 15, 56, 35, 0, 0, 1321631795},  // 2010 (Dec+11) 18 15:56:35
+    {1970, 1, 15297, 15, 56, 35, 0, 0, 1321631795},                // large number of days
 
     {2011, 11, 18, 10, 56, 35, 0, -5 * 3600, 1321631795},  // UTC-5
     {2011, 11, 18, 3, 56, 35, 0, -12 * 3600, 1321631795},  // UTC-12
@@ -88,14 +88,14 @@ static void test_date(void) {
 // ## Time parts
 
 static TimeTest unix_tests[] = {
-    {0, 0, {1970, January, 1, 0, 0, 0, 0, Thursday}},
-    {1221681866, 0, {2008, September, 17, 20, 4, 26, 0, Wednesday}},
-    {-1221681866, 0, {1931, April, 16, 3, 55, 34, 0, Thursday}},
-    {-11644473600, 0, {1601, January, 1, 0, 0, 0, 0, Monday}},
-    {599529660, 0, {1988, December, 31, 0, 1, 0, 0, Saturday}},
-    {978220860, 0, {2000, December, 31, 0, 1, 0, 0, Sunday}},
-    {0, 1e8, {1970, January, 1, 0, 0, 0, 1e8, Thursday}},
-    {1221681866, 2e8, {2008, September, 17, 20, 4, 26, 2e8, Wednesday}},
+    {0, 0, {1970, TIME_JANUARY, 1, 0, 0, 0, 0, TIME_THURSDAY}},
+    {1221681866, 0, {2008, TIME_SEPTEMBER, 17, 20, 4, 26, 0, TIME_WEDNESDAY}},
+    {-1221681866, 0, {1931, TIME_APRIL, 16, 3, 55, 34, 0, TIME_THURSDAY}},
+    {-11644473600, 0, {1601, TIME_JANUARY, 1, 0, 0, 0, 0, TIME_MONDAY}},
+    {599529660, 0, {1988, TIME_DECEMBER, 31, 0, 1, 0, 0, TIME_SATURDAY}},
+    {978220860, 0, {2000, TIME_DECEMBER, 31, 0, 1, 0, 0, TIME_SUNDAY}},
+    {0, 1e8, {1970, TIME_JANUARY, 1, 0, 0, 0, 1e8, TIME_THURSDAY}},
+    {1221681866, 2e8, {2008, TIME_SEPTEMBER, 17, 20, 4, 26, 2e8, TIME_WEDNESDAY}},
 };
 
 static void test_get_part(void) {
@@ -559,7 +559,7 @@ static void test_add_to_exact_second(void) {
     // 999999999].
     printf("test_add_to_exact_second...");
     Time t1 = time_now();
-    Time t2 = time_add(t1, Second - t1.nsec);
+    Time t2 = time_add(t1, TIME_SECOND - t1.nsec);
     int sec = (t1.sec + 1) % 60;
     assert(time_get_second(t2) == sec && t2.nsec == 0);
     printf("OK\n");
@@ -629,8 +629,8 @@ static AddDateTest add_date_tests[] = {
 
 static void test_add_date(void) {
     printf("test_add_date...");
-    Time t0 = time_date(2011, November, 18, 7, 56, 35, 0, 0);
-    Time t1 = time_date(2016, March, 19, 7, 56, 35, 0, 0);
+    Time t0 = time_date(2011, TIME_NOVEMBER, 18, 7, 56, 35, 0, 0);
+    Time t1 = time_date(2016, TIME_MARCH, 19, 7, 56, 35, 0, 0);
     for (size_t i = 0; i < sizeof(add_date_tests) / sizeof(add_date_tests[0]); i++) {
         AddDateTest test = add_date_tests[i];
         Time t = time_add_date(t0, test.years, test.months, test.days);

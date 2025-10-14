@@ -19,29 +19,29 @@
 
 // Month is a month of the year.
 enum Month {
-    January = 1,
-    February,
-    March,
-    April,
-    May,
-    June,
-    July,
-    August,
-    September,
-    October,
-    November,
-    December,
+    TIME_JANUARY = 1,
+    TIME_FEBRUARY,
+    TIME_MARCH,
+    TIME_APRIL,
+    TIME_MAY,
+    TIME_JUNE,
+    TIME_JULY,
+    TIME_AUGUST,
+    TIME_SEPTEMBER,
+    TIME_OCTOBER,
+    TIME_NOVEMBER,
+    TIME_DECEMBER,
 };
 
 // Weekday is a day of the week (Sunday = 0, ...).
 enum Weekday {
-    Sunday = 0,
-    Monday,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday,
+    TIME_SUNDAY = 0,
+    TIME_MONDAY,
+    TIME_TUESDAY,
+    TIME_WEDNESDAY,
+    TIME_THURSDAY,
+    TIME_FRIDAY,
+    TIME_SATURDAY,
 };
 
 // Time represents an instant in time with nanosecond precision.
@@ -237,12 +237,12 @@ void time_marshal_binary(Time t, uint8_t* buf);
 
 // Common durations. There is no definition for units of Day or larger
 // to avoid confusion across daylight savings time zone transitions.
-extern const Duration Nanosecond;
-extern const Duration Microsecond;
-extern const Duration Millisecond;
-extern const Duration Second;
-extern const Duration Minute;
-extern const Duration Hour;
+extern const Duration TIME_NANO;
+extern const Duration TIME_MICRO;
+extern const Duration TIME_MILLI;
+extern const Duration TIME_SECOND;
+extern const Duration TIME_MINUTE;
+extern const Duration TIME_HOUR;
 
 // ### Duration conversion
 

@@ -13,45 +13,45 @@
 #include "vaqt.h"
 
 // Common durations.
-const Duration Nanosecond = 1;
-const Duration Microsecond = 1000 * Nanosecond;
-const Duration Millisecond = 1000 * Microsecond;
-const Duration Second = 1000 * Millisecond;
-const Duration Minute = 60 * Second;
-const Duration Hour = 60 * Minute;
+const Duration TIME_NANO = 1;
+const Duration TIME_MICRO = 1000 * TIME_NANO;
+const Duration TIME_MILLI = 1000 * TIME_MICRO;
+const Duration TIME_SECOND = 1000 * TIME_MILLI;
+const Duration TIME_MINUTE = 60 * TIME_SECOND;
+const Duration TIME_HOUR = 60 * TIME_MINUTE;
 
 // ## Conversion
 
 // duration_to_micro returns the duration as an integer microsecond count.
 int64_t duration_to_micro(Duration d) {
-    return d / Microsecond;
+    return d / TIME_MICRO;
 }
 
 // duration_to_milli returns the duration as an integer millisecond count.
 int64_t duration_to_milli(Duration d) {
-    return d / Millisecond;
+    return d / TIME_MILLI;
 }
 
 // duration_to_seconds returns the duration as a floating point number of
 // seconds.
 double duration_to_seconds(Duration d) {
-    int64_t sec = d / Second;
-    int64_t nsec = d % Second;
+    int64_t sec = d / TIME_SECOND;
+    int64_t nsec = d % TIME_SECOND;
     return (double)sec + (double)nsec / 1e9;
 }
 
 // duration_to_minutes returns the duration as a floating point number of
 // minutes.
 double duration_to_minutes(Duration d) {
-    int64_t min = d / Minute;
-    int64_t nsec = d % Minute;
+    int64_t min = d / TIME_MINUTE;
+    int64_t nsec = d % TIME_MINUTE;
     return (double)min + (double)nsec / (60 * 1e9);
 }
 
 // duration_to_hours returns the duration as a floating point number of hours.
 double duration_to_hours(Duration d) {
-    int64_t hour = d / Hour;
-    int64_t nsec = d % Hour;
+    int64_t hour = d / TIME_HOUR;
+    int64_t nsec = d % TIME_HOUR;
     return (double)hour + (double)nsec / (60 * 60 * 1e9);
 }
 

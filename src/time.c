@@ -153,7 +153,7 @@ static uint64_t abs_time(Time t) {
 // abs_weekday is like Weekday but operates on an absolute time.
 static enum Weekday abs_weekday(uint64_t abs) {
     // January 1 of the absolute year, like January 1 of 2001, was a Monday.
-    uint64_t sec = (abs + Monday * seconds_per_day) % seconds_per_week;
+    uint64_t sec = (abs + TIME_MONDAY * seconds_per_day) % seconds_per_week;
     return sec / seconds_per_day;
 }
 
@@ -214,7 +214,7 @@ static void abs_date_full(uint64_t abs, int* year, enum Month* month, int* day, 
         }
         if (*day == 31 + 29 - 1) {
             // This is February 29 (the leap day) - day 60 in a leap year.
-            *month = February;
+            *month = TIME_FEBRUARY;
             *day = 29;
             return;
         }
@@ -255,7 +255,7 @@ static bool tless_than_half(Duration x, Duration y) {
 // time_div divides t by d and returns the remainder.
 // Only supports d which is a multiple of 1 second.
 static Duration time_div(Time t, Duration d) {
-    if (d % Second != 0) {
+    if (d % TIME_SECOND != 0) {
         return 0;
     }
 
@@ -274,8 +274,8 @@ static Duration time_div(Time t, Duration d) {
     }
 
     // d is a multiple of 1 second.
-    int64_t d1 = d / Second;
-    Duration r = (sec % d1) * Second + nsec;
+    int64_t d1 = d / TIME_SECOND;
+    Duration r = (sec % d1) * TIME_SECOND + nsec;
 
     if (neg && r != 0) {
         r = d - r;
@@ -349,7 +349,7 @@ Time time_date(int year,
 
     // Add in days before this month.
     d += days_before[month - 1];
-    if (is_leap(year) && month >= March) {
+    if (is_leap(year) && month >= TIME_MARCH) {
         d++;  // February 29
     }
 
@@ -468,7 +468,7 @@ void time_get_isoweek(Time t, int* year, int* week) {
     // +3     +2      +1        0        -1     -2       -3
     // the offset to Thursday
     uint64_t abs = abs_time(t);
-    int d = (Thursday - abs_weekday(abs));
+    int d = (TIME_THURSDAY - abs_weekday(abs));
     // handle Sunday
     if (d == 4) {
         d = -3;
@@ -568,7 +568,7 @@ Time time_tm(struct tm tm, int offset_sec) {
 
 // time_to_tm returns t in the given timezone offset as a calendar time.
 struct tm time_to_tm(Time t, int offset_sec) {
-    Time loc_t = time_add(t, offset_sec * Second);
+    Time loc_t = time_add(t, offset_sec * TIME_SECOND);
     int year, day, hour, min, sec;
     enum Month month;
     time_get_date(loc_t, &year, &month, &day);
@@ -624,7 +624,7 @@ bool time_is_zero(Time t) {
 
 // time_add returns the time t+d.
 Time time_add(Time t, Duration d) {
-    int64_t dsec = d / Second;
+    int64_t dsec = d / TIME_SECOND;
     int64_t nsec = t.nsec + d % 1000000000;
     if (nsec >= 1e9) {
         dsec++;
@@ -640,7 +640,7 @@ Time time_add(Time t, Duration d) {
 // minimum) value that can be stored in a Duration, the maximum (or minimum)
 // duration will be returned.
 Duration time_sub(Time t, Time u) {
-    int64_t d = (t.sec - u.sec) * Second + (t.nsec - u.nsec);
+    int64_t d = (t.sec - u.sec) * TIME_SECOND + (t.nsec - u.nsec);
     if (time_equal(time_add(u, d), t)) {
         return d;  // d is correct
     }

@@ -541,7 +541,7 @@ Returns the time t+d.
 
 ```c
 Time t = time_date(2024, August, 6, 21, 22, 15, 0, 0);
-Duration d = Second * 30;
+Duration d = 30 * TIME_SECOND;
 Time result = time_add(t, d);
 char buf[64];
 time_fmt_iso(buf, sizeof(buf), result, 0);
@@ -560,7 +560,7 @@ Returns the duration t-u.
 Time t1 = time_date(2024, August, 6, 21, 22, 45, 0, 0);
 Time t2 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
 Duration d = time_sub(t1, t2);
-// d == 30 * Second
+// d == 30 * TIME_SECOND
 ```
 
 ### time_since
@@ -621,7 +621,7 @@ Returns the result of rounding t down to a multiple of d (since the zero time).
 
 ```c
 Time t = time_date(2024, August, 6, 21, 22, 15, 500000000, 0);
-Duration d = Second * 10;
+Duration d = 10 * TIME_SECOND;
 Time result = time_truncate(t, d);
 char buf[64];
 time_fmt_iso(buf, sizeof(buf), result, 0);
@@ -638,7 +638,7 @@ Returns the result of rounding t to the nearest multiple of d.
 
 ```c
 Time t = time_date(2024, August, 6, 21, 22, 15, 500000000, 0);
-Duration d = Second * 10;
+Duration d = 10 * TIME_SECOND;
 Time result = time_round(t, d);
 char buf[64];
 time_fmt_iso(buf, sizeof(buf), result, 0);
@@ -772,7 +772,7 @@ int64_t duration_to_micro(Duration d);
 Returns the duration as an integer microsecond count.
 
 ```c
-Duration d = 5 * Second + 10 * Millisecond;
+Duration d = 5 * TIME_SECOND + 10 * TIME_MILLI;
 int64_t micro = duration_to_micro(d);
 // 5010000
 ```
@@ -786,7 +786,7 @@ int64_t duration_to_milli(Duration d);
 Returns the duration as an integer millisecond count.
 
 ```c
-Duration d = 5 * Second + 10 * Millisecond;
+Duration d = 5 * TIME_SECOND + 10 * TIME_MILLI;
 int64_t milli = duration_to_milli(d);
 // 5010
 ```
@@ -800,7 +800,7 @@ double duration_to_seconds(Duration d);
 Returns the duration as a floating point number of seconds.
 
 ```c
-Duration d = 5 * Second + 500 * Millisecond;
+Duration d = 5 * TIME_SECOND + 500 * TIME_MILLI;
 double sec = duration_to_seconds(d);
 // 5.5
 ```
@@ -814,7 +814,7 @@ double duration_to_minutes(Duration d);
 Returns the duration as a floating point number of minutes.
 
 ```c
-Duration d = 2 * Minute + 30 * Second;
+Duration d = 2 * TIME_MINUTE + 30 * TIME_SECOND;
 double min = duration_to_minutes(d);
 // 2.5
 ```
@@ -828,7 +828,7 @@ double duration_to_hours(Duration d);
 Returns the duration as a floating point number of hours.
 
 ```c
-Duration d = 1 * Hour + 30 * Minute;
+Duration d = 1 * TIME_HOUR + 30 * TIME_MINUTE;
 double hours = duration_to_hours(d);
 // 1.5
 ```
@@ -846,10 +846,10 @@ Duration duration_truncate(Duration d, Duration m);
 Returns the result of rounding d toward zero to a multiple of m.
 
 ```c
-Duration d = 25 * Second + 500 * Millisecond;
-Duration m = 10 * Second;
+Duration d = 25 * TIME_SECOND + 500 * TIME_MILLI;
+Duration m = 10 * TIME_SECOND;
 Duration result = duration_truncate(d, m);
-// 20 * Second
+// 20 * TIME_SECOND
 ```
 
 ### duration_round
@@ -861,10 +861,10 @@ Duration duration_round(Duration d, Duration m);
 Returns the result of rounding d to the nearest multiple of m.
 
 ```c
-Duration d = 25 * Second + 500 * Millisecond;
-Duration m = 10 * Second;
+Duration d = 25 * TIME_SECOND + 500 * TIME_MILLI;
+Duration m = 10 * TIME_SECOND;
 Duration result = duration_round(d, m);
-// 30 * Second
+// 30 * TIME_SECOND
 ```
 
 ### duration_abs
@@ -876,9 +876,9 @@ Duration duration_abs(Duration d);
 Returns the absolute value of d.
 
 ```c
-Duration d = -5 * Second;
+Duration d = -5 * TIME_SECOND;
 Duration result = duration_abs(d);
-// 5 * Second
+// 5 * TIME_SECOND
 ```
 
 ## Getting started

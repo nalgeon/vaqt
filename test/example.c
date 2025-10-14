@@ -320,7 +320,7 @@ static void example_time_add(void) {
     printf("---\ntime_add:\n");
 
     Time t = time_date(2024, August, 6, 21, 22, 15, 0, 0);
-    Duration d = Second * 30;
+    Duration d = 30 * TIME_SECOND;
     Time result = time_add(t, d);
     char buf[64];
     time_fmt_iso(buf, sizeof(buf), result, 0);
@@ -371,7 +371,7 @@ static void example_time_truncate(void) {
     printf("---\ntime_truncate:\n");
 
     Time t = time_date(2024, August, 6, 21, 22, 15, 500000000, 0);
-    Duration d = Second * 10;
+    Duration d = 10 * TIME_SECOND;
     Time result = time_truncate(t, d);
     char buf[64];
     time_fmt_iso(buf, sizeof(buf), result, 0);
@@ -383,7 +383,7 @@ static void example_time_round(void) {
     printf("---\ntime_round:\n");
 
     Time t = time_date(2024, August, 6, 21, 22, 15, 500000000, 0);
-    Duration d = Second * 10;
+    Duration d = 10 * TIME_SECOND;
     Time result = time_round(t, d);
     char buf[64];
     time_fmt_iso(buf, sizeof(buf), result, 0);
@@ -466,7 +466,7 @@ static void example_time_unmarshal_binary(void) {
 static void example_duration_to_micro(void) {
     printf("---\nduration_to_micro:\n");
 
-    Duration d = 5 * Second + 10 * Millisecond;
+    Duration d = 5 * TIME_SECOND + 10 * TIME_MILLI;
     int64_t micro = duration_to_micro(d);
     printf("%lld\n", micro);
     // 5010000
@@ -475,7 +475,7 @@ static void example_duration_to_micro(void) {
 static void example_duration_to_milli(void) {
     printf("---\nduration_to_milli:\n");
 
-    Duration d = 5 * Second + 10 * Millisecond;
+    Duration d = 5 * TIME_SECOND + 10 * TIME_MILLI;
     int64_t milli = duration_to_milli(d);
     printf("%lld\n", milli);
     // 5010
@@ -484,7 +484,7 @@ static void example_duration_to_milli(void) {
 static void example_duration_to_seconds(void) {
     printf("---\nduration_to_seconds:\n");
 
-    Duration d = 5 * Second + 500 * Millisecond;
+    Duration d = 5 * TIME_SECOND + 500 * TIME_MILLI;
     double sec = duration_to_seconds(d);
     printf("%.1f\n", sec);
     // 5.5
@@ -493,7 +493,7 @@ static void example_duration_to_seconds(void) {
 static void example_duration_to_minutes(void) {
     printf("---\nduration_to_minutes:\n");
 
-    Duration d = 2 * Minute + 30 * Second;
+    Duration d = 2 * TIME_MINUTE + 30 * TIME_SECOND;
     double min = duration_to_minutes(d);
     printf("%.1f\n", min);
     // 2.5
@@ -502,7 +502,7 @@ static void example_duration_to_minutes(void) {
 static void example_duration_to_hours(void) {
     printf("---\nduration_to_hours:\n");
 
-    Duration d = 1 * Hour + 30 * Minute;
+    Duration d = 1 * TIME_HOUR + 30 * TIME_MINUTE;
     double hours = duration_to_hours(d);
     printf("%.1f\n", hours);
     // 1.5
@@ -511,8 +511,8 @@ static void example_duration_to_hours(void) {
 static void example_duration_truncate(void) {
     printf("---\nduration_truncate:\n");
 
-    Duration d = 25 * Second + 500 * Millisecond;
-    Duration m = 10 * Second;
+    Duration d = 25 * TIME_SECOND + 500 * TIME_MILLI;
+    Duration m = 10 * TIME_SECOND;
     Duration result = duration_truncate(d, m);
     printf("%lld\n", result);
     // 20000000000
@@ -521,8 +521,8 @@ static void example_duration_truncate(void) {
 static void example_duration_round(void) {
     printf("---\nduration_round:\n");
 
-    Duration d = 25 * Second + 500 * Millisecond;
-    Duration m = 10 * Second;
+    Duration d = 25 * TIME_SECOND + 500 * TIME_MILLI;
+    Duration m = 10 * TIME_SECOND;
     Duration result = duration_round(d, m);
     printf("%lld\n", result);
     // 30000000000
@@ -531,7 +531,7 @@ static void example_duration_round(void) {
 static void example_duration_abs(void) {
     printf("---\nduration_abs:\n");
 
-    Duration d = -5 * Second;
+    Duration d = -5 * TIME_SECOND;
     Duration result = duration_abs(d);
     printf("%lld\n", result);
     // 5000000000

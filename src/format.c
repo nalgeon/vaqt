@@ -69,7 +69,7 @@ size_t time_fmt_iso(char* buf, size_t size, Time t, int offset_sec) {
             n = snprintf(buf, size, layout, year, month, day, hour, min, sec, t.nsec);
         }
     } else {
-        Time loc_t = time_add(t, offset_sec * Second);
+        Time loc_t = time_add(t, offset_sec * TIME_SECOND);
         time_get_date(loc_t, &year, &month, &day);
         time_get_clock(loc_t, &hour, &min, &sec);
         int ofhour = offset_sec / 3600;
@@ -99,7 +99,7 @@ size_t time_fmt_datetime(char* buf, size_t size, Time t, int offset_sec) {
         time_get_date(t, &year, &month, &day);
         time_get_clock(t, &hour, &min, &sec);
     } else {
-        Time loc_t = time_add(t, offset_sec * Second);
+        Time loc_t = time_add(t, offset_sec * TIME_SECOND);
         time_get_date(loc_t, &year, &month, &day);
         time_get_clock(loc_t, &hour, &min, &sec);
     }
@@ -115,7 +115,7 @@ size_t time_fmt_date(char* buf, size_t size, Time t, int offset_sec) {
     if (offset_sec == 0) {
         time_get_date(t, &year, &month, &day);
     } else {
-        Time loc_t = time_add(t, offset_sec * Second);
+        Time loc_t = time_add(t, offset_sec * TIME_SECOND);
         time_get_date(loc_t, &year, &month, &day);
     }
     return snprintf(buf, size, "%04d-%02d-%02d", year, month, day);
@@ -129,7 +129,7 @@ size_t time_fmt_time(char* buf, size_t size, Time t, int offset_sec) {
     if (offset_sec == 0) {
         time_get_clock(t, &hour, &min, &sec);
     } else {
-        Time loc_t = time_add(t, offset_sec * Second);
+        Time loc_t = time_add(t, offset_sec * TIME_SECOND);
         time_get_clock(loc_t, &hour, &min, &sec);
     }
     return snprintf(buf, size, "%02d:%02d:%02d", hour, min, sec);
