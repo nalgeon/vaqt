@@ -738,7 +738,7 @@ Marshals the time value into a binary blob.
 
 ```c
 Time t = time_now();
-uint8_t buf[TIME_BLOB_SIZE];
+uint8_t buf[TIME_BINARY_SIZE];
 time_marshal_binary(t, buf);
 // buf contains serialized t value
 ```
@@ -753,7 +753,7 @@ Unmarshals a time value from a binary blob.
 
 ```c
 Time t1 = time_date(2011, November, 18, 15, 56, 35, 666777888, 0);
-uint8_t buf[TIME_BLOB_SIZE];
+uint8_t buf[TIME_BINARY_SIZE];
 time_marshal_binary(t1, buf);
 Time t2 = time_unmarshal_binary(buf);
 // t2 equals t1

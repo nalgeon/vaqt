@@ -51,7 +51,7 @@ typedef struct {
     int32_t nsec;  // nanoseconds within the second [0, 999999999]
 } Time;
 
-#define TIME_BLOB_SIZE 13
+#define TIME_BINARY_SIZE 13
 
 // Duration represents the elapsed time between two instants
 // as an int64 nanosecond count. The representation limits the

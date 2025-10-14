@@ -445,7 +445,7 @@ static void example_time_marshal_binary(void) {
     printf("---\ntime_marshal_binary:\n");
 
     Time t = time_now();
-    uint8_t buf[TIME_BLOB_SIZE];
+    uint8_t buf[TIME_BINARY_SIZE];
     time_marshal_binary(t, buf);
     printf("buf contains serialized t value\n");
     // buf contains serialized t value
@@ -455,7 +455,7 @@ static void example_time_unmarshal_binary(void) {
     printf("---\ntime_unmarshal_binary:\n");
 
     Time t1 = time_date(2011, November, 18, 15, 56, 35, 666777888, 0);
-    uint8_t buf[TIME_BLOB_SIZE];
+    uint8_t buf[TIME_BINARY_SIZE];
     time_marshal_binary(t1, buf);
     Time t2 = time_unmarshal_binary(buf);
     bool equal = time_equal(t1, t2);
