@@ -13,6 +13,7 @@ The `vaqt` package offers data types and functions for handling time and duratio
 [Formatting](#formatting) •
 [Marshaling](#marshaling) •
 [Duration](#duration) •
+[Duration units](#duration-units) •
 [Duration rounding](#duration-rounding) •
 [Getting started](#getting-started) •
 [Building from source](#building-from-source) •
@@ -779,6 +780,23 @@ Time t2 = time_unmarshal_binary(buf);
 ```
 
 ## Duration
+
+Duration constants:
+
+-   `TIME_NANO` — 1 nanosecond.
+-   `TIME_MICRO` — 1 microsecond.
+-   `TIME_MILLI` — 1 millisecond.
+-   `TIME_SECOND` — 1 second.
+-   `TIME_MINUTE` — 1 minute.
+-   `TIME_HOUR` — 1 hour.
+
+You can combine them to create arbitrary durations:
+
+```c
+Duration d = 5 * TIME_HOUR + 10 * TIME_MINUTE + 30 * TIME_SECOND;
+```
+
+## Duration units
 
 Functions for converting duration values between different units.
 
