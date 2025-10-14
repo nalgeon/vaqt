@@ -32,16 +32,14 @@ int64_t duration_to_milli(Duration d) {
     return d / TIME_MILLI;
 }
 
-// duration_to_seconds returns the duration as a floating point number of
-// seconds.
+// duration_to_seconds returns the duration as a floating point number of seconds.
 double duration_to_seconds(Duration d) {
     int64_t sec = d / TIME_SECOND;
     int64_t nsec = d % TIME_SECOND;
     return (double)sec + (double)nsec / 1e9;
 }
 
-// duration_to_minutes returns the duration as a floating point number of
-// minutes.
+// duration_to_minutes returns the duration as a floating point number of minutes.
 double duration_to_minutes(Duration d) {
     int64_t min = d / TIME_MINUTE;
     int64_t nsec = d % TIME_MINUTE;
@@ -63,8 +61,8 @@ static bool dless_than_half(Duration x, Duration y) {
     return (uint64_t)x + (uint64_t)x < (uint64_t)y;
 }
 
-// duration_truncate returns the result of rounding d toward zero to a multiple
-// of m. If m <= 0, Truncate returns d unchanged.
+// duration_truncate returns the result of rounding d toward zero
+// to a multiple of m. If m <= 0, Truncate returns d unchanged.
 Duration duration_truncate(Duration d, Duration m) {
     if (m <= 0) {
         return d;

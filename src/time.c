@@ -401,8 +401,7 @@ int time_get_day(Time t) {
     return day;
 }
 
-// time_get_clock returns the hour, minute, and second within the day specified
-// by t.
+// time_get_clock returns the hour, minute, and second within the day specified by t.
 void time_get_clock(Time t, int* hour, int* min, int* sec) {
     uint64_t abs = abs_time(t);
     abs_clock(abs, hour, min, sec);
@@ -554,8 +553,8 @@ int64_t time_to_nano(Time t) {
 
 // ## Calendar time
 
-// time_tm returns the Time corresponding to the given calendar time at the
-// given timezone offset.
+// time_tm returns the Time corresponding to the given calendar time
+// at the given timezone offset.
 Time time_tm(struct tm tm, int offset_sec) {
     int year = tm.tm_year + 1900;
     int month = tm.tm_mon + 1;

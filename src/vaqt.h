@@ -91,8 +91,7 @@ enum Month time_get_month(Time t);
 // time_get_day returns the day of the month specified by t.
 int time_get_day(Time t);
 
-// time_get_clock returns the hour, minute, and second within the day specified
-// by t.
+// time_get_clock returns the hour, minute, and second within the day specified by t.
 void time_get_clock(Time t, int* hour, int* min, int* sec);
 
 // time_get_hour returns the hour within the day specified by t.
@@ -134,26 +133,26 @@ Time time_micro(int64_t usec);
 // nsec nanoseconds since January 1, 1970 UTC.
 Time time_nano(int64_t nsec);
 
-// time_to_unix returns t as a Unix time, the number of seconds elapsed
-// since January 1, 1970 UTC.
+// time_to_unix returns t as a Unix time, the number of seconds
+// elapsed since January 1, 1970 UTC.
 int64_t time_to_unix(Time t);
 
-// time_to_milli returns t as a Unix time, the number of milliseconds elapsed
-// since January 1, 1970 UTC.
+// time_to_milli returns t as a Unix time, the number of milliseconds
+// elapsed since January 1, 1970 UTC.
 int64_t time_to_milli(Time t);
 
-// time_to_micro returns t as a Unix time, the number of microseconds elapsed
-// since January 1, 1970 UTC.
+// time_to_micro returns t as a Unix time, the number of microseconds
+// elapsed since January 1, 1970 UTC.
 int64_t time_to_micro(Time t);
 
-// time_to_nano returns t as a Unix time, the number of nanoseconds elapsed
-// since January 1, 1970 UTC.
+// time_to_nano returns t as a Unix time, the number of nanoseconds
+// elapsed since January 1, 1970 UTC.
 int64_t time_to_nano(Time t);
 
 // ### Calendar time
 
-// time_tm returns the Time corresponding to the given calendar time at the
-// given timezone offset.
+// time_tm returns the Time corresponding to the given calendar time
+// at the given timezone offset.
 Time time_tm(struct tm tm, int offset_sec);
 
 // time_to_tm returns t in the given timezone offset as a calendar time.
@@ -217,8 +216,7 @@ size_t time_fmt_date(char* buf, size_t size, Time t, int offset_sec);
 // time_fmt_time returns a time string for the given time value.
 size_t time_fmt_time(char* buf, size_t size, Time t, int offset_sec);
 
-// time_parse parses a formatted string and returns the time value it
-// represents.
+// time_parse parses a formatted string and returns the time value it represents.
 Time time_parse(const char* value);
 
 // ### Time marshaling
@@ -252,12 +250,10 @@ int64_t duration_to_micro(Duration d);
 // duration_to_milli returns the duration as an integer millisecond count.
 int64_t duration_to_milli(Duration d);
 
-// duration_to_seconds returns the duration as a floating point number of
-// seconds.
+// duration_to_seconds returns the duration as a floating point number of seconds.
 double duration_to_seconds(Duration d);
 
-// duration_to_minutes returns the duration as a floating point number of
-// minutes.
+// duration_to_minutes returns the duration as a floating point number of minutes.
 double duration_to_minutes(Duration d);
 
 // duration_to_hours returns the duration as a floating point number of hours.
@@ -265,8 +261,7 @@ double duration_to_hours(Duration d);
 
 // ### Duration rounding
 
-// duration_truncate returns the result of rounding d toward zero to a multiple
-// of m.
+// duration_truncate returns the result of rounding d toward zero to a multiple of m.
 Duration duration_truncate(Duration d, Duration m);
 
 // duration_round returns the result of rounding d to the nearest multiple of m.

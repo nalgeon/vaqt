@@ -135,10 +135,9 @@ size_t time_fmt_time(char* buf, size_t size, Time t, int offset_sec) {
     return snprintf(buf, size, "%02d:%02d:%02d", hour, min, sec);
 }
 
-// time_parse parses a formatted string and returns the time value it
-// represents. Supports a limited set of layouts:
-// - "2006-01-02T15:04:05.999999999+07:00" (ISO 8601 with nanoseconds and
-// timezone)
+// time_parse parses a formatted string and returns the time value it represents.
+// Supports a limited set of layouts:
+// - "2006-01-02T15:04:05.999999999+07:00" (ISO 8601 with nanoseconds and timezone)
 // - "2006-01-02T15:04:05.999999999Z" (ISO 8601 with nanoseconds, UTC)
 // - "2006-01-02T15:04:05+07:00" (ISO 8601 with timezone)
 // - "2006-01-02T15:04:05Z" (ISO 8601, UTC)
