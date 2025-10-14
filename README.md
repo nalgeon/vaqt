@@ -655,7 +655,16 @@ Functions for formatting and parsing time values.
 size_t time_fmt_iso(char* buf, size_t size, Time t, int offset_sec);
 ```
 
-Returns an ISO 8601 time string for the given time value. Converts the time value to the given timezone offset before formatting. Chooses the most compact representation.
+Returns an ISO 8601 time string for the given time value. Converts the time value to the given timezone offset before formatting.
+
+Chooses the most compact representation:
+
+```text
+2006-01-02T15:04:05.999999999+07:00
+2006-01-02T15:04:05.999999999Z
+2006-01-02T15:04:05+07:00
+2006-01-02T15:04:05Z
+```
 
 ```c
 Time t = time_date(2011, November, 18, 15, 56, 35, 666777888, 0);
@@ -715,7 +724,17 @@ size_t n = time_fmt_time(buf, sizeof(buf), t, 0);
 Time time_parse(const char* value);
 ```
 
-Parses a formatted string and returns the time value it represents. Supports a limited set of layouts.
+Parses a formatted string and returns the time value it represents.
+
+Supports a limited set of layouts:
+
+-   `2006-01-02T15:04:05.999999999+07:00` (ISO 8601 with nanoseconds and timezone)
+-   `2006-01-02T15:04:05.999999999Z` (ISO 8601 with nanoseconds, UTC)
+-   `2006-01-02T15:04:05+07:00` (ISO 8601 with timezone)
+-   `2006-01-02T15:04:05Z` (ISO 8601, UTC)
+-   `2006-01-02 15:04:05` (date and time, UTC)
+-   `2006-01-02` (date only, UTC)
+-   `15:04:05` (time only, UTC)
 
 ```c
 Time t = time_parse("2011-11-18T15:56:35.666777888Z");
