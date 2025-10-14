@@ -406,7 +406,7 @@ static void example_time_fmt_datetime(void) {
 
     Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
     char buf[64];
-    size_t n = time_fmt_datetime(buf, sizeof(buf), t, 0);
+    size_t n = time_fmt_datetime(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2011-11-18 15:56:35"
 }
@@ -416,7 +416,7 @@ static void example_time_fmt_date(void) {
 
     Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
     char buf[64];
-    size_t n = time_fmt_date(buf, sizeof(buf), t, 0);
+    size_t n = time_fmt_date(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "2011-11-18"
 }
@@ -426,7 +426,7 @@ static void example_time_fmt_time(void) {
 
     Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
     char buf[64];
-    size_t n = time_fmt_time(buf, sizeof(buf), t, 0);
+    size_t n = time_fmt_time(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
     // "15:56:35"
 }
