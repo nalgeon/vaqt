@@ -16,7 +16,7 @@
 // and returns the offset in seconds. Returns true on success, false on failure.
 static bool parse_timezone_offset(const char* tz, int* offset_sec) {
     if (tz[0] == '\0') {
-        *offset_sec = TIME_UTC_OFFSET;
+        *offset_sec = 0;
         return true;
     }
     // Validate the timezone string format before parsing
@@ -152,8 +152,7 @@ Time time_parse(const char* value) {
         return zero;
     }
 
-    int year = 1, month = 1, day = 1, hour = 0, min = 0, sec = 0, nsec = 0,
-        offset_sec = TIME_UTC_OFFSET;
+    int year = 1, month = 1, day = 1, hour = 0, min = 0, sec = 0, nsec = 0, offset_sec = 0;
     char tz[7] = "";
 
     if (len == 35) {

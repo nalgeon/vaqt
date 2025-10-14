@@ -52,7 +52,6 @@ typedef struct {
 } Time;
 
 #define TIME_BLOB_SIZE 13
-#define TIME_UTC_OFFSET 0
 
 // Duration represents the elapsed time between two instants
 // as an int64 nanosecond count. The representation limits the

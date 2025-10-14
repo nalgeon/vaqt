@@ -42,38 +42,36 @@ typedef struct {
 } DateTest;
 
 static DateTest date_tests[] = {
-    {2011, 11, 6, 8, 0, 0, 0, TIME_UTC_OFFSET, 1320566400},    // 8:00:00 UTC
-    {2011, 11, 6, 8, 59, 59, 0, TIME_UTC_OFFSET, 1320569999},  // 8:59:59 UTC
-    {2011, 11, 6, 10, 0, 0, 0, TIME_UTC_OFFSET, 1320573600},   // 10:00:00 UTC
+    {2011, 11, 6, 8, 0, 0, 0, 0, 1320566400},    // 8:00:00 UTC
+    {2011, 11, 6, 8, 59, 59, 0, 0, 1320569999},  // 8:59:59 UTC
+    {2011, 11, 6, 10, 0, 0, 0, 0, 1320573600},   // 10:00:00 UTC
 
-    {2011, 3, 13, 9, 0, 0, 0, TIME_UTC_OFFSET, 1300006800},    // 9:00:00 UTC
-    {2011, 3, 13, 9, 59, 59, 0, TIME_UTC_OFFSET, 1300010399},  // 9:59:59 UTC
-    {2011, 3, 13, 10, 0, 0, 0, TIME_UTC_OFFSET, 1300010400},   // 10:00:00 UTC
-    {2011, 3, 13, 9, 30, 0, 0, TIME_UTC_OFFSET, 1300008600},   // 9:30:00 UTC
-    {2012, 12, 24, 8, 0, 0, 0, TIME_UTC_OFFSET, 1356336000},   // Leap year
+    {2011, 3, 13, 9, 0, 0, 0, 0, 1300006800},    // 9:00:00 UTC
+    {2011, 3, 13, 9, 59, 59, 0, 0, 1300010399},  // 9:59:59 UTC
+    {2011, 3, 13, 10, 0, 0, 0, 0, 1300010400},   // 10:00:00 UTC
+    {2011, 3, 13, 9, 30, 0, 0, 0, 1300008600},   // 9:30:00 UTC
+    {2012, 12, 24, 8, 0, 0, 0, 0, 1356336000},   // Leap year
 
     // Many names for 2011-11-18 15:56:35.0 UTC
-    {2011, 11, 18, 15, 56, 35, 0, TIME_UTC_OFFSET, 1321631795},    // Nov 18 15:56:35
-    {2011, 11, 19, -9, 56, 35, 0, TIME_UTC_OFFSET, 1321631795},    // Nov 19 -9:56:35
-    {2011, 11, 17, 39, 56, 35, 0, TIME_UTC_OFFSET, 1321631795},    // Nov 17 39:56:35
-    {2011, 11, 18, 14, 116, 35, 0, TIME_UTC_OFFSET, 1321631795},   // Nov 18 14:116:35
-    {2011, 10, 49, 15, 56, 35, 0, TIME_UTC_OFFSET, 1321631795},    // Oct 49 15:56:35
-    {2011, 11, 18, 15, 55, 95, 0, TIME_UTC_OFFSET, 1321631795},    // Nov 18 15:55:95
-    {2011, 11, 18, 15, 56, 34, 1e9, TIME_UTC_OFFSET, 1321631795},  // Nov 18 15:56:34 + 10⁹ns
-    {2011, 12, -12, 15, 56, 35, 0, TIME_UTC_OFFSET, 1321631795},   // Dec -12 15:56:35
-    {2012, 1, -43, 15, 56, 35, 0, TIME_UTC_OFFSET, 1321631795},    // 2012 Jan -43 15:56:35
-    {2012, January - 2, 18, 15, 56, 35, 0, TIME_UTC_OFFSET,
-     1321631795},  // 2012 (Jan-2) 18 15:56:35
-    {2010, December + 11, 18, 15, 56, 35, 0, TIME_UTC_OFFSET,
-     1321631795},                                                  // 2010 (Dec+11) 18 15:56:35
-    {1970, 1, 15297, 15, 56, 35, 0, TIME_UTC_OFFSET, 1321631795},  // large number of days
+    {2011, 11, 18, 15, 56, 35, 0, 0, 1321631795},             // Nov 18 15:56:35
+    {2011, 11, 19, -9, 56, 35, 0, 0, 1321631795},             // Nov 19 -9:56:35
+    {2011, 11, 17, 39, 56, 35, 0, 0, 1321631795},             // Nov 17 39:56:35
+    {2011, 11, 18, 14, 116, 35, 0, 0, 1321631795},            // Nov 18 14:116:35
+    {2011, 10, 49, 15, 56, 35, 0, 0, 1321631795},             // Oct 49 15:56:35
+    {2011, 11, 18, 15, 55, 95, 0, 0, 1321631795},             // Nov 18 15:55:95
+    {2011, 11, 18, 15, 56, 34, 1e9, 0, 1321631795},           // Nov 18 15:56:34 + 10⁹ns
+    {2011, 12, -12, 15, 56, 35, 0, 0, 1321631795},            // Dec -12 15:56:35
+    {2012, 1, -43, 15, 56, 35, 0, 0, 1321631795},             // 2012 Jan -43 15:56:35
+    {2012, January - 2, 18, 15, 56, 35, 0, 0, 1321631795},    // 2012 (Jan-2) 18 15:56:35
+    {2010, December + 11, 18, 15, 56, 35, 0, 0, 1321631795},  // 2010 (Dec+11) 18 15:56:35
+    {1970, 1, 15297, 15, 56, 35, 0, 0, 1321631795},           // large number of days
 
     {2011, 11, 18, 10, 56, 35, 0, -5 * 3600, 1321631795},  // UTC-5
     {2011, 11, 18, 3, 56, 35, 0, -12 * 3600, 1321631795},  // UTC-12
     {2011, 11, 18, 16, 56, 35, 0, 1 * 3600, 1321631795},   // UTC+1
     {2011, 11, 19, 3, 56, 35, 0, 12 * 3600, 1321631795},   // UTC+12
 
-    {1970, 1, -25508, 8, 0, 0, 0, TIME_UTC_OFFSET, -2203948800},  // negative Unix time
+    {1970, 1, -25508, 8, 0, 0, 0, 0, -2203948800},  // negative Unix time
 };
 
 static void test_date(void) {
@@ -151,7 +149,7 @@ static void test_get_isoweek(void) {
     printf("test_get_isoweek...");
     for (size_t i = 0; i < sizeof(isoweek_tests) / sizeof(isoweek_tests[0]); i++) {
         ISOWeekTest test = isoweek_tests[i];
-        Time t = time_date(test.year, test.month, test.day, 0, 0, 0, 0, TIME_UTC_OFFSET);
+        Time t = time_date(test.year, test.month, test.day, 0, 0, 0, 0, 0);
         int year, week;
         time_get_isoweek(t, &year, &week);
         // printf("%d %d %d, want %d %d, got %d %d\n", test.year, test.month,
@@ -240,7 +238,7 @@ static void test_get_yearday(void) {
     printf("test_get_yearday...");
     for (size_t i = 0; i < sizeof(yearday_tests) / sizeof(yearday_tests[0]); i++) {
         YearDayTest test = yearday_tests[i];
-        Time t = time_date(test.year, test.month, test.day, 0, 0, 0, 0, TIME_UTC_OFFSET);
+        Time t = time_date(test.year, test.month, test.day, 0, 0, 0, 0, 0);
         int yday = time_get_yearday(t);
         // printf("%d %d %d, want %d, got %d\n", test.year, test.month, test.day,
         // test.yday, yday);
@@ -344,11 +342,11 @@ typedef struct {
 } CalendarTest;
 
 static CalendarTest calendar_tests[] = {
-    {2011, 11, 18, 15, 56, 35, TIME_UTC_OFFSET, 111, 10, 18, 15, 56, 35},
-    {1901, 11, 18, 15, 56, 35, TIME_UTC_OFFSET, 1, 10, 18, 15, 56, 35},
-    {1900, 11, 18, 15, 56, 35, TIME_UTC_OFFSET, 0, 10, 18, 15, 56, 35},
-    {1800, 11, 18, 15, 56, 35, TIME_UTC_OFFSET, -100, 10, 18, 15, 56, 35},
-    {1, 1, 1, 0, 0, 0, TIME_UTC_OFFSET, -1899, 0, 1, 0, 0, 0},
+    {2011, 11, 18, 15, 56, 35, 0, 111, 10, 18, 15, 56, 35},
+    {1901, 11, 18, 15, 56, 35, 0, 1, 10, 18, 15, 56, 35},
+    {1900, 11, 18, 15, 56, 35, 0, 0, 10, 18, 15, 56, 35},
+    {1800, 11, 18, 15, 56, 35, 0, -100, 10, 18, 15, 56, 35},
+    {1, 1, 1, 0, 0, 0, 0, -1899, 0, 1, 0, 0, 0},
 
     {2011, 11, 18, 15, 56, 35, -5 * 3600, 111, 10, 18, 10, 56, 35},
     {2011, 11, 18, 15, 56, 35, 1 * 3600, 111, 10, 18, 16, 56, 35},
@@ -360,8 +358,7 @@ static void test_tm(void) {
     printf("test_tm...");
     for (size_t i = 0; i < sizeof(calendar_tests) / sizeof(calendar_tests[0]); i++) {
         CalendarTest test = calendar_tests[i];
-        Time want = time_date(test.year, test.month, test.day, test.hour, test.min, test.sec, 0,
-                              TIME_UTC_OFFSET);
+        Time want = time_date(test.year, test.month, test.day, test.hour, test.min, test.sec, 0, 0);
         struct tm tm = {.tm_year = test.tm_year,
                         .tm_mon = test.tm_mon,
                         .tm_mday = test.tm_mday,
@@ -381,8 +378,7 @@ static void test_to_tm(void) {
     printf("test_to_tm...");
     for (size_t i = 0; i < sizeof(calendar_tests) / sizeof(calendar_tests[0]); i++) {
         CalendarTest test = calendar_tests[i];
-        Time t = time_date(test.year, test.month, test.day, test.hour, test.min, test.sec, 0,
-                           TIME_UTC_OFFSET);
+        Time t = time_date(test.year, test.month, test.day, test.hour, test.min, test.sec, 0, 0);
         struct tm tm = time_to_tm(t, test.offset_sec);
         assert(tm.tm_year == test.tm_year);
         assert(tm.tm_mon == test.tm_mon);
@@ -484,9 +480,9 @@ static void test_compare(void) {
     for (size_t i = 0; i < sizeof(compare_tests) / sizeof(compare_tests[0]); i++) {
         CompareTest test = compare_tests[i];
         Time t1 = time_date(test.t1.year, test.t1.month, test.t1.day, test.t1.hour, test.t1.min,
-                            test.t1.sec, test.t1.nsec, TIME_UTC_OFFSET);
+                            test.t1.sec, test.t1.nsec, 0);
         Time t2 = time_date(test.t2.year, test.t2.month, test.t2.day, test.t2.hour, test.t2.min,
-                            test.t2.sec, test.t2.nsec, TIME_UTC_OFFSET);
+                            test.t2.sec, test.t2.nsec, 0);
         int cmp = time_compare(t1, t2);
         // printf("{%lld %lld} vs {%lld %lld}: want %d, got %d\n", t1.sec, t1.nsec,
         // t2.sec, t2.nsec, test.cmp, cmp);
@@ -510,9 +506,9 @@ static void test_compare(void) {
 
 static void test_is_zero(void) {
     printf("test_is_zero...");
-    Time t1 = time_date(2011, 11, 18, 15, 56, 35, 1321631795, TIME_UTC_OFFSET);
+    Time t1 = time_date(2011, 11, 18, 15, 56, 35, 1321631795, 0);
     assert(!time_is_zero(t1));
-    Time t2 = time_date(1, 1, 1, 0, 0, 0, 0, TIME_UTC_OFFSET);
+    Time t2 = time_date(1, 1, 1, 0, 0, 0, 0, 0);
     assert(time_is_zero(t2));
     Time zero = {0, 0};
     assert(time_is_zero(zero));
@@ -633,8 +629,8 @@ static AddDateTest add_date_tests[] = {
 
 static void test_add_date(void) {
     printf("test_add_date...");
-    Time t0 = time_date(2011, November, 18, 7, 56, 35, 0, TIME_UTC_OFFSET);
-    Time t1 = time_date(2016, March, 19, 7, 56, 35, 0, TIME_UTC_OFFSET);
+    Time t0 = time_date(2011, November, 18, 7, 56, 35, 0, 0);
+    Time t1 = time_date(2016, March, 19, 7, 56, 35, 0, 0);
     for (size_t i = 0; i < sizeof(add_date_tests) / sizeof(add_date_tests[0]); i++) {
         AddDateTest test = add_date_tests[i];
         Time t = time_add_date(t0, test.years, test.months, test.days);
@@ -677,10 +673,10 @@ static void test_truncate(void) {
     for (size_t i = 0; i < sizeof(truncate_tests) / sizeof(truncate_tests[0]); i++) {
         RoundTest test = truncate_tests[i];
         Time t = time_date(test.t.year, test.t.month, test.t.day, test.t.hour, test.t.min,
-                           test.t.sec, test.t.nsec, TIME_UTC_OFFSET);
+                           test.t.sec, test.t.nsec, 0);
         Time got = time_truncate(t, test.d);
         Time want = time_date(test.want.year, test.want.month, test.want.day, test.want.hour,
-                              test.want.min, test.want.sec, test.want.nsec, TIME_UTC_OFFSET);
+                              test.want.min, test.want.sec, test.want.nsec, 0);
         // printf("want: {%lld %lld}, got: {%lld %lld}\n", want.sec, want.nsec,
         // got.sec, got.nsec);
         assert(time_equal(got, want));
@@ -714,10 +710,10 @@ static void test_round(void) {
     for (size_t i = 0; i < sizeof(round_tests) / sizeof(round_tests[0]); i++) {
         RoundTest test = round_tests[i];
         Time t = time_date(test.t.year, test.t.month, test.t.day, test.t.hour, test.t.min,
-                           test.t.sec, test.t.nsec, TIME_UTC_OFFSET);
+                           test.t.sec, test.t.nsec, 0);
         Time got = time_round(t, test.d);
         Time want = time_date(test.want.year, test.want.month, test.want.day, test.want.hour,
-                              test.want.min, test.want.sec, test.want.nsec, TIME_UTC_OFFSET);
+                              test.want.min, test.want.sec, test.want.nsec, 0);
         // printf("want: {%lld %lld}, got: {%lld %lld}\n", want.sec, want.nsec,
         // got.sec, got.nsec);
         assert(time_equal(got, want));

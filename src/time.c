@@ -676,8 +676,7 @@ Time time_add_date(Time t, int years, int months, int days) {
     time_get_date(t, &year, &month, &day);
     int hour, min, sec;
     time_get_clock(t, &hour, &min, &sec);
-    return time_date(year + years, month + months, day + days, hour, min, sec, t.nsec,
-                     TIME_UTC_OFFSET);
+    return time_date(year + years, month + months, day + days, hour, min, sec, t.nsec, 0);
 }
 
 // ## Rounding
