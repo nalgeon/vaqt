@@ -21,13 +21,13 @@ Package `vaqt` provides functionality for working with time. The calendrical cal
     -   [time_get_clock](#time_get_clock)
 -   [Unix time](#unix-time)
     -   [time_unix](#time_unix)
-    -   [time_milli](#time_milli)
-    -   [time_micro](#time_micro)
-    -   [time_nano](#time_nano)
+    -   [time_unix_milli](#time_unix_milli)
+    -   [time_unix_micro](#time_unix_micro)
+    -   [time_unix_nano](#time_unix_nano)
     -   [time_to_unix](#time_to_unix)
-    -   [time_to_milli](#time_to_milli)
-    -   [time_to_micro](#time_to_micro)
-    -   [time_to_nano](#time_to_nano)
+    -   [time_to_unix_milli](#time_to_unix_milli)
+    -   [time_to_unix_micro](#time_to_unix_micro)
+    -   [time_to_unix_nano](#time_to_unix_nano)
 -   [Calendar time](#calendar-time)
     -   [time_tm](#time_tm)
     -   [time_to_tm](#time_to_tm)
@@ -335,46 +335,46 @@ time_fmt_iso(t, 0, buf, sizeof(buf));
 // "2011-11-18T15:56:35.666777888Z"
 ```
 
-### time_milli
+### time_unix_milli
 
 ```c
-Time time_milli(int64_t msec);
+Time time_unix_milli(int64_t msec);
 ```
 
 Returns the Time corresponding to the given Unix time, `msec` milliseconds since January 1, 1970 UTC.
 
 ```c
-Time t = time_milli(1321631795666);
+Time t = time_unix_milli(1321631795666);
 char buf[64];
 time_fmt_iso(t, 0, buf, sizeof(buf));
 // "2011-11-18T15:56:35.666000000Z"
 ```
 
-### time_micro
+### time_unix_micro
 
 ```c
-Time time_micro(int64_t usec);
+Time time_unix_micro(int64_t usec);
 ```
 
 Returns the Time corresponding to the given Unix time, `usec` microseconds since January 1, 1970 UTC.
 
 ```c
-Time t = time_micro(1321631795666777);
+Time t = time_unix_micro(1321631795666777);
 char buf[64];
 time_fmt_iso(t, 0, buf, sizeof(buf));
 // "2011-11-18T15:56:35.666777000Z"
 ```
 
-### time_nano
+### time_unix_nano
 
 ```c
-Time time_nano(int64_t nsec);
+Time time_unix_nano(int64_t nsec);
 ```
 
 Returns the Time corresponding to the given Unix time, `nsec` nanoseconds since January 1, 1970 UTC.
 
 ```c
-Time t = time_nano(1321631795666777888);
+Time t = time_unix_nano(1321631795666777888);
 char buf[64];
 time_fmt_iso(t, 0, buf, sizeof(buf));
 // "2011-11-18T15:56:35.666777888Z"
@@ -396,10 +396,10 @@ int64_t unix_sec = time_to_unix(t);
 // 1722979335
 ```
 
-### time_to_milli
+### time_to_unix_milli
 
 ```c
-int64_t time_to_milli(Time t);
+int64_t time_to_unix_milli(Time t);
 ```
 
 Returns t as a Unix time, the number of milliseconds elapsed since January 1, 1970 UTC.
@@ -408,35 +408,35 @@ The result is undefined if the Unix time in milliseconds cannot be represented b
 
 ```c
 Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
-int64_t unix_msec = time_to_milli(t);
+int64_t unix_msec = time_to_unix_milli(t);
 // 1722979335431
 ```
 
-### time_to_micro
+### time_to_unix_micro
 
 ```c
-int64_t time_to_micro(Time t);
+int64_t time_to_unix_micro(Time t);
 ```
 
 Returns t as a Unix time, the number of microseconds elapsed since January 1, 1970 UTC.
 
 ```c
 Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
-int64_t unix_usec = time_to_micro(t);
+int64_t unix_usec = time_to_unix_micro(t);
 // 1722979335431295
 ```
 
-### time_to_nano
+### time_to_unix_nano
 
 ```c
-int64_t time_to_nano(Time t);
+int64_t time_to_unix_nano(Time t);
 ```
 
 Returns t as a Unix time, the number of nanoseconds elapsed since January 1, 1970 UTC.
 
 ```c
 Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
-int64_t unix_nsec = time_to_nano(t);
+int64_t unix_nsec = time_to_unix_nano(t);
 // 1722979335431295000
 ```
 

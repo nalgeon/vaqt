@@ -499,21 +499,21 @@ Time time_unix(int64_t sec, int64_t nsec) {
     return unix_time(sec, nsec);
 }
 
-// time_milli returns the Time corresponding to the given Unix time,
+// time_unix_milli returns the Time corresponding to the given Unix time,
 // msec milliseconds since January 1, 1970 UTC.
-Time time_milli(int64_t msec) {
+Time time_unix_milli(int64_t msec) {
     return time_unix(msec / 1000, (msec % 1000) * 1000000);
 }
 
-// time_micro returns the Time corresponding to the given Unix time,
+// time_unix_micro returns the Time corresponding to the given Unix time,
 // usec microseconds since January 1, 1970 UTC.
-Time time_micro(int64_t usec) {
+Time time_unix_micro(int64_t usec) {
     return time_unix(usec / 1000000, (usec % 1000000) * 1000);
 }
 
-// time_nano returns the Time corresponding to the given Unix time,
+// time_unix_nano returns the Time corresponding to the given Unix time,
 // nsec nanoseconds since January 1, 1970 UTC.
-Time time_nano(int64_t nsec) {
+Time time_unix_nano(int64_t nsec) {
     return time_unix(0, nsec);
 }
 
@@ -526,28 +526,28 @@ int64_t time_to_unix(Time t) {
     return unix_sec(t);
 }
 
-// time_to_milli returns t as a Unix time, the number of milliseconds elapsed
+// time_to_unix_milli returns t as a Unix time, the number of milliseconds elapsed
 // since January 1, 1970 UTC. The result is undefined if the Unix time in
 // milliseconds cannot be represented by an int64 (a date more than 292 million
 // years before or after 1970).
-int64_t time_to_milli(Time t) {
+int64_t time_to_unix_milli(Time t) {
     return unix_sec(t) * 1000 + t.nsec / 1000000;
 }
 
-// time_to_micro returns t as a Unix time, the number of microseconds elapsed
+// time_to_unix_micro returns t as a Unix time, the number of microseconds elapsed
 // since January 1, 1970 UTC. The result is undefined if the Unix time in
 // microseconds cannot be represented by an int64 (a date before year -290307 or
 // after year 294246).
-int64_t time_to_micro(Time t) {
+int64_t time_to_unix_micro(Time t) {
     return unix_sec(t) * 1000000 + t.nsec / 1000;
 }
 
-// time_to_nano returns t as a Unix time, the number of nanoseconds elapsed
+// time_to_unix_nano returns t as a Unix time, the number of nanoseconds elapsed
 // since January 1, 1970 UTC. The result is undefined if the Unix time
 // in nanoseconds cannot be represented by an int64 (a date before the year
 // 1678 or after 2262). Note that this means the result of calling UnixNano
 // on the zero Time is undefined.
-int64_t time_to_nano(Time t) {
+int64_t time_to_unix_nano(Time t) {
     return unix_sec(t) * 1000000000 + t.nsec;
 }
 

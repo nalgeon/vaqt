@@ -65,13 +65,13 @@ Unix time:
 
 ```text
 time_unix(sec, nsec)
-time_milli(msec)
-time_micro(usec)
-time_nano(nsec)
+time_unix_milli(msec)
+time_unix_micro(usec)
+time_unix_nano(nsec)
 time_to_unix(t)
-time_to_milli(t)
-time_to_micro(t)
-time_to_nano(t)
+time_to_unix_milli(t)
+time_to_unix_micro(t)
+time_to_unix_nano(t)
 ```
 
 Calendar time:

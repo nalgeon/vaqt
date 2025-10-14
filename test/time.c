@@ -275,7 +275,7 @@ static void test_milli(void) {
     for (size_t i = 0; i < sizeof(unix_tests) / sizeof(unix_tests[0]); i++) {
         TimeTest test = unix_tests[i];
         int64_t msec = test.sec * 1000 + test.nsec / 1000000;
-        Time t = time_milli(msec);
+        Time t = time_unix_milli(msec);
         assert(same(t, test.golden));
     }
     printf("OK\n");
@@ -286,7 +286,7 @@ static void test_micro(void) {
     for (size_t i = 0; i < sizeof(unix_tests) / sizeof(unix_tests[0]); i++) {
         TimeTest test = unix_tests[i];
         int64_t usec = test.sec * 1000000 + test.nsec / 1000;
-        Time t = time_micro(usec);
+        Time t = time_unix_micro(usec);
         assert(same(t, test.golden));
     }
     printf("OK\n");
@@ -308,7 +308,7 @@ static void test_to_milli(void) {
         TimeTest test = unix_tests[i];
         Time t = time_unix(test.sec, test.nsec);
         int64_t msec = test.sec * 1000 + test.nsec / 1000000;
-        assert(time_to_milli(t) == msec);
+        assert(time_to_unix_milli(t) == msec);
     }
     printf("OK\n");
 }
@@ -319,7 +319,7 @@ static void test_to_micro(void) {
         TimeTest test = unix_tests[i];
         Time t = time_unix(test.sec, test.nsec);
         int64_t usec = test.sec * 1000000 + test.nsec / 1000;
-        assert(time_to_micro(t) == usec);
+        assert(time_to_unix_micro(t) == usec);
     }
     printf("OK\n");
 }
@@ -329,7 +329,7 @@ static void test_to_nano(void) {
     for (size_t i = 0; i < sizeof(unix_tests) / sizeof(unix_tests[0]); i++) {
         TimeTest test = unix_tests[i];
         Time t = time_unix(test.sec, test.nsec);
-        assert(time_to_nano(t) == test.sec * 1000000000 + test.nsec);
+        assert(time_to_unix_nano(t) == test.sec * 1000000000 + test.nsec);
     }
     printf("OK\n");
 }

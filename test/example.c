@@ -175,7 +175,7 @@ static void example_time_unix(void) {
 static void example_time_milli(void) {
     printf("---\ntime_milli:\n");
 
-    Time t = time_milli(1321631795666);
+    Time t = time_unix_milli(1321631795666);
     char buf[64];
     time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
@@ -185,7 +185,7 @@ static void example_time_milli(void) {
 static void example_time_micro(void) {
     printf("---\ntime_micro:\n");
 
-    Time t = time_micro(1321631795666777);
+    Time t = time_unix_micro(1321631795666777);
     char buf[64];
     time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
@@ -195,7 +195,7 @@ static void example_time_micro(void) {
 static void example_time_nano(void) {
     printf("---\ntime_nano:\n");
 
-    Time t = time_nano(1321631795666777888);
+    Time t = time_unix_nano(1321631795666777888);
     char buf[64];
     time_fmt_iso(t, 0, buf, sizeof(buf));
     printf("%s\n", buf);
@@ -215,7 +215,7 @@ static void example_time_to_milli(void) {
     printf("---\ntime_to_milli:\n");
 
     Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
-    int64_t unix_msec = time_to_milli(t);
+    int64_t unix_msec = time_to_unix_milli(t);
     printf("%lld\n", unix_msec);
     // 1722979335431
 }
@@ -224,7 +224,7 @@ static void example_time_to_micro(void) {
     printf("---\ntime_to_micro:\n");
 
     Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
-    int64_t unix_usec = time_to_micro(t);
+    int64_t unix_usec = time_to_unix_micro(t);
     printf("%lld\n", unix_usec);
     // 1722979335431295
 }
@@ -233,7 +233,7 @@ static void example_time_to_nano(void) {
     printf("---\ntime_to_nano:\n");
 
     Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
-    int64_t unix_nsec = time_to_nano(t);
+    int64_t unix_nsec = time_to_unix_nano(t);
     printf("%lld\n", unix_nsec);
     // 1722979335431295000
 }
