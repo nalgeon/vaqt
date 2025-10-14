@@ -19,31 +19,31 @@ static void example_time_now(void) {
 static void example_time_date(void) {
     printf("---\ntime_date:\n");
 
-    Time t1 = time_date(2011, November, 18, 0, 0, 0, 0, 0);
+    Time t1 = time_date(2011, TIME_NOVEMBER, 18, 0, 0, 0, 0, 0);
     char buf1[64];
     time_fmt_iso(buf1, sizeof(buf1), t1, 0);
     printf("%s\n", buf1);
     // 2011-11-18T00:00:00Z
 
-    Time t2 = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+    Time t2 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
     char buf2[64];
     time_fmt_iso(buf2, sizeof(buf2), t2, 0);
     printf("%s\n", buf2);
     // 2011-11-18T15:56:35Z
 
-    Time t3 = time_date(2011, November, 18, 15, 56, 35, 666777888, 0);
+    Time t3 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, 0);
     char buf3[64];
     time_fmt_iso(buf3, sizeof(buf3), t3, 0);
     printf("%s\n", buf3);
     // 2011-11-18T15:56:35.666777888Z
 
-    Time t4 = time_date(2011, November, 18, 15, 56, 35, 0, -5 * 3600);
+    Time t4 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, -5 * 3600);
     char buf4[64];
     time_fmt_iso(buf4, sizeof(buf4), t4, 0);
     printf("%s\n", buf4);
     // 2011-11-18T20:56:35Z
 
-    Time t5 = time_date(2011, November, 18, 15, 56, 35, 666777888, -5 * 3600);
+    Time t5 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, -5 * 3600);
     char buf5[64];
     time_fmt_iso(buf5, sizeof(buf5), t5, 0);
     printf("%s\n", buf5);
@@ -53,7 +53,7 @@ static void example_time_date(void) {
 static void example_time_get_year(void) {
     printf("---\ntime_get_year:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int year = time_get_year(t);
     printf("%d\n", year);
     // 2024
@@ -62,7 +62,7 @@ static void example_time_get_year(void) {
 static void example_time_get_month(void) {
     printf("---\ntime_get_month:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     enum Month month = time_get_month(t);
     printf("%d\n", month);
     // 8
@@ -71,7 +71,7 @@ static void example_time_get_month(void) {
 static void example_time_get_day(void) {
     printf("---\ntime_get_day:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int day = time_get_day(t);
     printf("%d\n", day);
     // 6
@@ -80,7 +80,7 @@ static void example_time_get_day(void) {
 static void example_time_get_hour(void) {
     printf("---\ntime_get_hour:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int hour = time_get_hour(t);
     printf("%d\n", hour);
     // 21
@@ -89,7 +89,7 @@ static void example_time_get_hour(void) {
 static void example_time_get_minute(void) {
     printf("---\ntime_get_minute:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int minute = time_get_minute(t);
     printf("%d\n", minute);
     // 22
@@ -98,7 +98,7 @@ static void example_time_get_minute(void) {
 static void example_time_get_second(void) {
     printf("---\ntime_get_second:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int second = time_get_second(t);
     printf("%d\n", second);
     // 15
@@ -107,7 +107,7 @@ static void example_time_get_second(void) {
 static void example_time_get_nano(void) {
     printf("---\ntime_get_nano:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int nano = time_get_nano(t);
     printf("%d\n", nano);
     // 431295000
@@ -116,7 +116,7 @@ static void example_time_get_nano(void) {
 static void example_time_get_weekday(void) {
     printf("---\ntime_get_weekday:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     enum Weekday weekday = time_get_weekday(t);
     printf("%d\n", weekday);
     // 2
@@ -125,7 +125,7 @@ static void example_time_get_weekday(void) {
 static void example_time_get_yearday(void) {
     printf("---\ntime_get_yearday:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int yearday = time_get_yearday(t);
     printf("%d\n", yearday);
     // 219
@@ -134,7 +134,7 @@ static void example_time_get_yearday(void) {
 static void example_time_get_isoweek(void) {
     printf("---\ntime_get_isoweek:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int iso_year, iso_week;
     time_get_isoweek(t, &iso_year, &iso_week);
     printf("%d, %d\n", iso_year, iso_week);
@@ -144,7 +144,7 @@ static void example_time_get_isoweek(void) {
 static void example_time_get_date(void) {
     printf("---\ntime_get_date:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int year, day;
     enum Month month;
     time_get_date(t, &year, &month, &day);
@@ -155,7 +155,7 @@ static void example_time_get_date(void) {
 static void example_time_get_clock(void) {
     printf("---\ntime_get_clock:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int hour, min, sec;
     time_get_clock(t, &hour, &min, &sec);
     printf("%d, %d, %d\n", hour, min, sec);
@@ -205,7 +205,7 @@ static void example_time_nano(void) {
 static void example_time_to_unix(void) {
     printf("---\ntime_to_unix:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int64_t unix_sec = time_to_unix(t);
     printf("%lld\n", unix_sec);
     // 1722979335
@@ -214,7 +214,7 @@ static void example_time_to_unix(void) {
 static void example_time_to_milli(void) {
     printf("---\ntime_to_milli:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int64_t unix_msec = time_to_milli(t);
     printf("%lld\n", unix_msec);
     // 1722979335431
@@ -223,7 +223,7 @@ static void example_time_to_milli(void) {
 static void example_time_to_micro(void) {
     printf("---\ntime_to_micro:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int64_t unix_usec = time_to_micro(t);
     printf("%lld\n", unix_usec);
     // 1722979335431295
@@ -232,7 +232,7 @@ static void example_time_to_micro(void) {
 static void example_time_to_nano(void) {
     printf("---\ntime_to_nano:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
     int64_t unix_nsec = time_to_nano(t);
     printf("%lld\n", unix_nsec);
     // 1722979335431295000
@@ -259,7 +259,7 @@ static void example_time_tm(void) {
 static void example_time_to_tm(void) {
     printf("---\ntime_to_tm:\n");
 
-    Time t = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+    Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
     struct tm tm = time_to_tm(t, 0);
     printf("tm_year = %d, tm_mon = %d, tm_mday = %d, tm_hour = %d, tm_min = %d, tm_sec = %d\n",
            tm.tm_year, tm.tm_mon, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
@@ -270,8 +270,8 @@ static void example_time_to_tm(void) {
 static void example_time_after(void) {
     printf("---\ntime_after:\n");
 
-    Time t1 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
-    Time t2 = time_date(2024, August, 6, 21, 22, 16, 0, 0);
+    Time t1 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
+    Time t2 = time_date(2024, TIME_AUGUST, 6, 21, 22, 16, 0, 0);
     bool after = time_after(t2, t1);
     printf("%s\n", after ? "true" : "false");
     // true
@@ -280,8 +280,8 @@ static void example_time_after(void) {
 static void example_time_before(void) {
     printf("---\ntime_before:\n");
 
-    Time t1 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
-    Time t2 = time_date(2024, August, 6, 21, 22, 16, 0, 0);
+    Time t1 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
+    Time t2 = time_date(2024, TIME_AUGUST, 6, 21, 22, 16, 0, 0);
     bool before = time_before(t1, t2);
     printf("%s\n", before ? "true" : "false");
     // true
@@ -290,8 +290,8 @@ static void example_time_before(void) {
 static void example_time_compare(void) {
     printf("---\ntime_compare:\n");
 
-    Time t1 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
-    Time t2 = time_date(2024, August, 6, 21, 22, 16, 0, 0);
+    Time t1 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
+    Time t2 = time_date(2024, TIME_AUGUST, 6, 21, 22, 16, 0, 0);
     int cmp = time_compare(t1, t2);
     printf("%d\n", cmp);
     // -1
@@ -300,8 +300,8 @@ static void example_time_compare(void) {
 static void example_time_equal(void) {
     printf("---\ntime_equal:\n");
 
-    Time t1 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
-    Time t2 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
+    Time t1 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
+    Time t2 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
     bool equal = time_equal(t1, t2);
     printf("%s\n", equal ? "true" : "false");
     // true
@@ -319,7 +319,7 @@ static void example_time_is_zero(void) {
 static void example_time_add(void) {
     printf("---\ntime_add:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 0, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
     Duration d = 30 * TIME_SECOND;
     Time result = time_add(t, d);
     char buf[64];
@@ -331,8 +331,8 @@ static void example_time_add(void) {
 static void example_time_sub(void) {
     printf("---\ntime_sub:\n");
 
-    Time t1 = time_date(2024, August, 6, 21, 22, 45, 0, 0);
-    Time t2 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
+    Time t1 = time_date(2024, TIME_AUGUST, 6, 21, 22, 45, 0, 0);
+    Time t2 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
     Duration d = time_sub(t1, t2);
     printf("%lld\n", d);
     // 30000000000
@@ -341,7 +341,7 @@ static void example_time_sub(void) {
 static void example_time_since(void) {
     printf("---\ntime_since:\n");
 
-    Time past = time_date(2024, August, 6, 21, 22, 15, 0, 0);
+    Time past = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
     Duration elapsed = time_since(past);
     printf("%.3f seconds\n", duration_to_seconds(elapsed));
     // elapsed is the duration since past
@@ -350,7 +350,7 @@ static void example_time_since(void) {
 static void example_time_until(void) {
     printf("---\ntime_until:\n");
 
-    Time future = time_date(2034, August, 6, 21, 22, 45, 0, 0);
+    Time future = time_date(2034, TIME_AUGUST, 6, 21, 22, 45, 0, 0);
     Duration remaining = time_until(future);
     printf("%.3f seconds\n", duration_to_seconds(remaining));
     // remaining is the duration until future
@@ -359,7 +359,7 @@ static void example_time_until(void) {
 static void example_time_add_date(void) {
     printf("---\ntime_add_date:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 0, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
     Time result = time_add_date(t, 0, 0, 1);
     char buf[64];
     time_fmt_iso(buf, sizeof(buf), result, 0);
@@ -370,7 +370,7 @@ static void example_time_add_date(void) {
 static void example_time_truncate(void) {
     printf("---\ntime_truncate:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 500000000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 500000000, 0);
     Duration d = 10 * TIME_SECOND;
     Time result = time_truncate(t, d);
     char buf[64];
@@ -382,7 +382,7 @@ static void example_time_truncate(void) {
 static void example_time_round(void) {
     printf("---\ntime_round:\n");
 
-    Time t = time_date(2024, August, 6, 21, 22, 15, 500000000, 0);
+    Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 500000000, 0);
     Duration d = 10 * TIME_SECOND;
     Time result = time_round(t, d);
     char buf[64];
@@ -394,7 +394,7 @@ static void example_time_round(void) {
 static void example_time_fmt_iso(void) {
     printf("---\ntime_fmt_iso:\n");
 
-    Time t = time_date(2011, November, 18, 15, 56, 35, 666777888, 0);
+    Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, 0);
     char buf[64];
     size_t n = time_fmt_iso(buf, sizeof(buf), t, 0);
     printf("%s\n", buf);
@@ -404,7 +404,7 @@ static void example_time_fmt_iso(void) {
 static void example_time_fmt_datetime(void) {
     printf("---\ntime_fmt_datetime:\n");
 
-    Time t = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+    Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
     char buf[64];
     size_t n = time_fmt_datetime(buf, sizeof(buf), t, 0);
     printf("%s\n", buf);
@@ -414,7 +414,7 @@ static void example_time_fmt_datetime(void) {
 static void example_time_fmt_date(void) {
     printf("---\ntime_fmt_date:\n");
 
-    Time t = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+    Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
     char buf[64];
     size_t n = time_fmt_date(buf, sizeof(buf), t, 0);
     printf("%s\n", buf);
@@ -424,7 +424,7 @@ static void example_time_fmt_date(void) {
 static void example_time_fmt_time(void) {
     printf("---\ntime_fmt_time:\n");
 
-    Time t = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+    Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
     char buf[64];
     size_t n = time_fmt_time(buf, sizeof(buf), t, 0);
     printf("%s\n", buf);
@@ -454,7 +454,7 @@ static void example_time_marshal_binary(void) {
 static void example_time_unmarshal_binary(void) {
     printf("---\ntime_unmarshal_binary:\n");
 
-    Time t1 = time_date(2011, November, 18, 15, 56, 35, 666777888, 0);
+    Time t1 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, 0);
     uint8_t buf[TIME_BINARY_SIZE];
     time_marshal_binary(t1, buf);
     Time t2 = time_unmarshal_binary(buf);

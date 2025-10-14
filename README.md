@@ -81,27 +81,27 @@ The `month`, `day`, `hour`, `min`, `sec`, and `nsec` values may be outside their
 If `offset_sec` is not 0, the source time is treated as being in a given timezone (with an offset in seconds east of UTC) and converted back to UTC.
 
 ```c
-Time t1 = time_date(2011, November, 18, 0, 0, 0, 0, 0);
+Time t1 = time_date(2011, TIME_NOVEMBER, 18, 0, 0, 0, 0, 0);
 char buf1[64];
 time_fmt_iso(buf1, sizeof(buf1), t1, 0);
 // 2011-11-18T00:00:00Z
 
-Time t2 = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+Time t2 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
 char buf2[64];
 time_fmt_iso(buf2, sizeof(buf2), t2, 0);
 // 2011-11-18T15:56:35Z
 
-Time t3 = time_date(2011, November, 18, 15, 56, 35, 666777888, 0);
+Time t3 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, 0);
 char buf3[64];
 time_fmt_iso(buf3, sizeof(buf3), t3, 0);
 // 2011-11-18T15:56:35.666777888Z
 
-Time t4 = time_date(2011, November, 18, 15, 56, 35, 0, -5 * 3600);
+Time t4 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, -5 * 3600);
 char buf4[64];
 time_fmt_iso(buf4, sizeof(buf4), t4, 0);
 // 2011-11-18T20:56:35Z
 
-Time t5 = time_date(2011, November, 18, 15, 56, 35, 666777888, -5 * 3600);
+Time t5 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, -5 * 3600);
 char buf5[64];
 time_fmt_iso(buf5, sizeof(buf5), t5, 0);
 // 2011-11-18T20:56:35.666777888Z
@@ -120,7 +120,7 @@ int time_get_year(Time t);
 Returns the year in which t occurs.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int year = time_get_year(t);
 // 2024
 ```
@@ -134,9 +134,9 @@ enum Month time_get_month(Time t);
 Returns the month of the year specified by t (1-12).
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 enum Month month = time_get_month(t);
-// August (8)
+// TIME_AUGUST (8)
 ```
 
 ### time_get_day
@@ -148,7 +148,7 @@ int time_get_day(Time t);
 Returns the day of the month specified by t (1-31).
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int day = time_get_day(t);
 // 6
 ```
@@ -162,7 +162,7 @@ int time_get_hour(Time t);
 Returns the hour within the day specified by t (0-23).
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int hour = time_get_hour(t);
 // 21
 ```
@@ -176,7 +176,7 @@ int time_get_minute(Time t);
 Returns the minute offset within the hour specified by t.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int minute = time_get_minute(t);
 // 22
 ```
@@ -190,7 +190,7 @@ int time_get_second(Time t);
 Returns the second offset within the minute specified by t (0-59).
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int second = time_get_second(t);
 // 15
 ```
@@ -204,7 +204,7 @@ int time_get_nano(Time t);
 Returns the nanosecond offset within the second specified by t (0-999999999).
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int nano = time_get_nano(t);
 // 431295000
 ```
@@ -218,7 +218,7 @@ enum Weekday time_get_weekday(Time t);
 Returns the day of the week specified by t (0-6, Sunday = 0).
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 enum Weekday weekday = time_get_weekday(t);
 // Tuesday (2)
 ```
@@ -232,7 +232,7 @@ int time_get_yearday(Time t);
 Returns the day of the year specified by t (1-366).
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int yearday = time_get_yearday(t);
 // 219
 ```
@@ -246,7 +246,7 @@ void time_get_isoweek(Time t, int* year, int* week);
 Returns the ISO 8601 year and week number in which t occurs.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int iso_year, iso_week;
 time_get_isoweek(t, &iso_year, &iso_week);
 // iso_year = 2024, iso_week = 32
@@ -261,11 +261,11 @@ void time_get_date(Time t, int* year, enum Month* month, int* day);
 Returns the year, month, and day in which t occurs.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int year, day;
 enum Month month;
 time_get_date(t, &year, &month, &day);
-// year = 2024, month = August, day = 6
+// year = 2024, month = TIME_AUGUST, day = 6
 ```
 
 ### time_get_clock
@@ -277,7 +277,7 @@ void time_get_clock(Time t, int* hour, int* min, int* sec);
 Returns the hour, minute, and second within the day specified by t.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int hour, min, sec;
 time_get_clock(t, &hour, &min, &sec);
 // hour = 21, min = 22, sec = 15
@@ -358,7 +358,7 @@ Returns t as a Unix time, the number of seconds elapsed since January 1, 1970 UT
 Unix-like operating systems often record time as a 32-bit number of seconds, but since `time_to_unix` returns a 64-bit value, it is valid for billions of years into the past or future.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int64_t unix_sec = time_to_unix(t);
 // 1722979335
 ```
@@ -374,7 +374,7 @@ Returns t as a Unix time, the number of milliseconds elapsed since January 1, 19
 The result is undefined if the Unix time in milliseconds cannot be represented by a 64-bit integer (a date more than 292 million years before or after 1970).
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int64_t unix_msec = time_to_milli(t);
 // 1722979335431
 ```
@@ -388,7 +388,7 @@ int64_t time_to_micro(Time t);
 Returns t as a Unix time, the number of microseconds elapsed since January 1, 1970 UTC.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int64_t unix_usec = time_to_micro(t);
 // 1722979335431295
 ```
@@ -402,7 +402,7 @@ int64_t time_to_nano(Time t);
 Returns t as a Unix time, the number of nanoseconds elapsed since January 1, 1970 UTC.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 431295000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 431295000, 0);
 int64_t unix_nsec = time_to_nano(t);
 // 1722979335431295000
 ```
@@ -443,7 +443,7 @@ struct tm time_to_tm(Time t, int offset_sec);
 Returns t in the given timezone offset as a calendar time.
 
 ```c
-Time t = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
 struct tm tm = time_to_tm(t, 0);
 // tm.tm_year = 111, tm.tm_mon = 10, tm.tm_mday = 18,
 // tm.tm_hour = 15, tm.tm_min = 56, tm.tm_sec = 35
@@ -462,8 +462,8 @@ bool time_after(Time t, Time u);
 Reports whether the time instant t is after u.
 
 ```c
-Time t1 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
-Time t2 = time_date(2024, August, 6, 21, 22, 16, 0, 0);
+Time t1 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
+Time t2 = time_date(2024, TIME_AUGUST, 6, 21, 22, 16, 0, 0);
 bool after = time_after(t2, t1);
 // true
 ```
@@ -477,8 +477,8 @@ bool time_before(Time t, Time u);
 Reports whether the time instant t is before u.
 
 ```c
-Time t1 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
-Time t2 = time_date(2024, August, 6, 21, 22, 16, 0, 0);
+Time t1 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
+Time t2 = time_date(2024, TIME_AUGUST, 6, 21, 22, 16, 0, 0);
 bool before = time_before(t1, t2);
 // true
 ```
@@ -492,8 +492,8 @@ int time_compare(Time t, Time u);
 Compares the time instant t with u. Returns -1 if t < u, 0 if t == u, +1 if t > u.
 
 ```c
-Time t1 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
-Time t2 = time_date(2024, August, 6, 21, 22, 16, 0, 0);
+Time t1 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
+Time t2 = time_date(2024, TIME_AUGUST, 6, 21, 22, 16, 0, 0);
 int cmp = time_compare(t1, t2);
 // -1
 ```
@@ -507,8 +507,8 @@ bool time_equal(Time t, Time u);
 Reports whether t and u represent the same time instant.
 
 ```c
-Time t1 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
-Time t2 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
+Time t1 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
+Time t2 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
 bool equal = time_equal(t1, t2);
 // true
 ```
@@ -540,7 +540,7 @@ Time time_add(Time t, Duration d);
 Returns the time t+d.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 0, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
 Duration d = 30 * TIME_SECOND;
 Time result = time_add(t, d);
 char buf[64];
@@ -557,8 +557,8 @@ Duration time_sub(Time t, Time u);
 Returns the duration t-u.
 
 ```c
-Time t1 = time_date(2024, August, 6, 21, 22, 45, 0, 0);
-Time t2 = time_date(2024, August, 6, 21, 22, 15, 0, 0);
+Time t1 = time_date(2024, TIME_AUGUST, 6, 21, 22, 45, 0, 0);
+Time t2 = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
 Duration d = time_sub(t1, t2);
 // d == 30 * TIME_SECOND
 ```
@@ -572,7 +572,7 @@ Duration time_since(Time t);
 Returns the time elapsed since t.
 
 ```c
-Time past = time_date(2024, August, 6, 21, 22, 15, 0, 0);
+Time past = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
 Duration elapsed = time_since(past);
 // elapsed is the duration since past
 ```
@@ -586,7 +586,7 @@ Duration time_until(Time t);
 Returns the duration until t.
 
 ```c
-Time future = time_date(2034, August, 6, 21, 22, 45, 0, 0);
+Time future = time_date(2034, TIME_AUGUST, 6, 21, 22, 45, 0, 0);
 Duration remaining = time_until(future);
 // remaining is the duration until future
 ```
@@ -600,7 +600,7 @@ Time time_add_date(Time t, int years, int months, int days);
 Returns the time corresponding to adding the given number of years, months, and days to t.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 0, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 0, 0);
 Time result = time_add_date(t, 0, 0, 1);
 char buf[64];
 time_fmt_iso(buf, sizeof(buf), result, 0);
@@ -620,7 +620,7 @@ Time time_truncate(Time t, Duration d);
 Returns the result of rounding t down to a multiple of d (since the zero time).
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 500000000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 500000000, 0);
 Duration d = 10 * TIME_SECOND;
 Time result = time_truncate(t, d);
 char buf[64];
@@ -637,7 +637,7 @@ Time time_round(Time t, Duration d);
 Returns the result of rounding t to the nearest multiple of d.
 
 ```c
-Time t = time_date(2024, August, 6, 21, 22, 15, 500000000, 0);
+Time t = time_date(2024, TIME_AUGUST, 6, 21, 22, 15, 500000000, 0);
 Duration d = 10 * TIME_SECOND;
 Time result = time_round(t, d);
 char buf[64];
@@ -667,7 +667,7 @@ Chooses the most compact representation:
 ```
 
 ```c
-Time t = time_date(2011, November, 18, 15, 56, 35, 666777888, 0);
+Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, 0);
 char buf[64];
 size_t n = time_fmt_iso(buf, sizeof(buf), t, 0);
 // buf = "2011-11-18T15:56:35.666777888Z"
@@ -682,7 +682,7 @@ size_t time_fmt_datetime(char* buf, size_t size, Time t, int offset_sec);
 Returns a datetime string (2006-01-02 15:04:05) for the given time value. Converts the time value to the given timezone offset before formatting.
 
 ```c
-Time t = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
 char buf[64];
 size_t n = time_fmt_datetime(buf, sizeof(buf), t, 0);
 // buf = "2011-11-18 15:56:35"
@@ -697,7 +697,7 @@ size_t time_fmt_date(char* buf, size_t size, Time t, int offset_sec);
 Returns a date string (2006-01-02) for the given time value. Converts the time value to the given timezone offset before formatting.
 
 ```c
-Time t = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
 char buf[64];
 size_t n = time_fmt_date(buf, sizeof(buf), t, 0);
 // buf = "2011-11-18"
@@ -712,7 +712,7 @@ size_t time_fmt_time(char* buf, size_t size, Time t, int offset_sec);
 Returns a time string (15:04:05) for the given time value. Converts the time value to the given timezone offset before formatting.
 
 ```c
-Time t = time_date(2011, November, 18, 15, 56, 35, 0, 0);
+Time t = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 0, 0);
 char buf[64];
 size_t n = time_fmt_time(buf, sizeof(buf), t, 0);
 // buf = "15:56:35"
@@ -771,7 +771,7 @@ Time time_unmarshal_binary(const uint8_t* buf);
 Unmarshals a time value from a binary blob.
 
 ```c
-Time t1 = time_date(2011, November, 18, 15, 56, 35, 666777888, 0);
+Time t1 = time_date(2011, TIME_NOVEMBER, 18, 15, 56, 35, 666777888, 0);
 uint8_t buf[TIME_BINARY_SIZE];
 time_marshal_binary(t1, buf);
 Time t2 = time_unmarshal_binary(buf);
