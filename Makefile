@@ -16,6 +16,6 @@ test-all:
 	make test suite=time
 
 test:
-	$(CC) $(SRC_FLAGS) src/*.c $(TEST_FLAGS) test/$(suite).c -o $(suite).test -lm
+	@$(CC) $(SRC_FLAGS) src/*.c $(TEST_FLAGS) test/$(suite).c -o $(suite).test -lm
 	@./$(suite).test
 	@rm -f $(suite).test
