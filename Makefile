@@ -5,7 +5,7 @@ TEST_FLAGS := -Wno-missing-field-initializers
 
 .PHONY: test
 
-example:
+run-example:
 	@$(CC) $(CFLAGS) -Isrc test/example.c src/*.c -o example -lm
 	@./example
 	@rm -f example

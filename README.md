@@ -160,7 +160,7 @@ make test-all
 Run examples:
 
 ```
-make example
+make run-example
 ```
 
 ## Contributing
