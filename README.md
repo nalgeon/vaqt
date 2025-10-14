@@ -2,6 +2,8 @@
 
 The `vaqt` package offers data types and functions for handling time and duration in C, with nanosecond precision.
 
+Works with C99, but C11 is recommended on Windows for nanosecond precision.
+
 [Concepts](#concepts) •
 [Features](#features) •
 [Getting started](#getting-started) •
@@ -10,7 +12,7 @@ The `vaqt` package offers data types and functions for handling time and duratio
 
 ## Concepts
 
-This package works with two types of values: `Time` and `Duration`.
+The package works with two types of values: `Time` and `Duration`.
 
 Time is a pair (seconds, nanoseconds), where `seconds` is the 64-bit number of seconds since zero time (0001-01-01 00:00:00 UTC) and `nanoseconds` is the number of nanoseconds within the current second (0-999999999). Time can represent dates billions of years in the past or future with nanosecond precision.
 
@@ -36,7 +38,7 @@ Duration is a 64-bit number of nanoseconds. It can represent values up to about 
 
 ## Features
 
-This package provides functions for common date and time operations.
+The package provides functions for common date and time operations.
 
 Creating time values:
 
@@ -160,6 +162,12 @@ Run examples:
 ```
 make example
 ```
+
+## Contributing
+
+Contributions are welcome. For anything other than bug fixes, please open an issue first to discuss what you want to change.
+
+Make sure to add or update tests as needed.
 
 ## License
 
