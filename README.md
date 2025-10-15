@@ -1,8 +1,6 @@
 # vaqt: High-precision date/time in C
 
-The `vaqt` package offers data types and functions for handling time and duration in C, with nanosecond precision.
-
-Works with C99, but C11 is recommended on Windows for nanosecond precision.
+The `vaqt` package offers data types and functions for handling time and duration in C, with nanosecond precision. Works with C99 (C11 is recommended on Windows for higher precision).
 
 [Concepts](#concepts) •
 [Features](#features) •
@@ -141,12 +139,12 @@ To use `vaqt` in your C project:
 #include "vaqt/vaqt.h"
 ```
 
-3. Use the functions as described in the documentation above.
+3. Use the types and functions as described in the documentation.
 
-4. Compile your project along with the vaqt source files. For example:
+4. Compile your project along with the `vaqt` source files. For example:
 
 ```bash
-gcc -o main main.c vaqt/*.c
+gcc main.c vaqt/*.c -o main -lm
 ```
 
 ## Building from source
